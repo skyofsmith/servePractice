@@ -1,10 +1,3 @@
-/*
- * a.c
- *
- *  Created on: May 7, 2018
- *      Author: sam
- */
-
 #include <stdio.h>
 
 int main(){
