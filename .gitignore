@@ -2,3 +2,4 @@ node_modules/
 /.metadata/
 .recommenders/
 RemoteSystemsTempFiles/
+.vscode
