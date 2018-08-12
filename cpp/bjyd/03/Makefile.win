@@ -1,15 +1,15 @@
-# Project: baseDataType
+# Project: TestFunctionOverloading
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = baseDataType.o
-LINKOBJ  = baseDataType.o
+OBJ      = TestFunctionOverloading.o
+LINKOBJ  = TestFunctionOverloading.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = baseDataType.exe
+BIN      = TestFunctionOverloading.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-baseDataType.o: baseDataType.cpp
-	$(CPP) -c baseDataType.cpp -o baseDataType.o $(CXXFLAGS)
+TestFunctionOverloading.o: TestFunctionOverloading.cpp
+	$(CPP) -c TestFunctionOverloading.cpp -o TestFunctionOverloading.o $(CXXFLAGS)
