@@ -1,15 +1,15 @@
-# Project: DefaultArgumentsDemo
+# Project: DefaultArguments-Overloading
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = DefaultArgumentsDemo.o
-LINKOBJ  = DefaultArgumentsDemo.o
+OBJ      = DefaultArguments-Overloading.o
+LINKOBJ  = DefaultArguments-Overloading.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = DefaultArgumentsDemo.exe
+BIN      = DefaultArguments-Overloading.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-DefaultArgumentsDemo.o: DefaultArgumentsDemo.cpp
-	$(CPP) -c DefaultArgumentsDemo.cpp -o DefaultArgumentsDemo.o $(CXXFLAGS)
+DefaultArguments-Overloading.o: DefaultArguments-Overloading.cpp
+	$(CPP) -c DefaultArguments-Overloading.cpp -o DefaultArguments-Overloading.o $(CXXFLAGS)
