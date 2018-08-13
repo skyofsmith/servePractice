@@ -10,7 +10,7 @@ int add (int x) {
 }
 
 int main() {
-    add(1);
+    add(1);//[Error] call of overloaded 'add(int)' is ambiguous
     cin.get();
 	return 0;
 }
