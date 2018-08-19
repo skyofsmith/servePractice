@@ -1,15 +1,15 @@
-# Project: TestCircleWithDeclaration
+# Project: StringOperators
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = TestCircleWithDeclaration.o Circle.o
-LINKOBJ  = TestCircleWithDeclaration.o Circle.o
+OBJ      = StringOperators.o
+LINKOBJ  = StringOperators.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = TestCircleWithDeclaration.exe
+BIN      = StringOperators.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,8 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-TestCircleWithDeclaration.o: TestCircleWithDeclaration.cpp
-	$(CPP) -c TestCircleWithDeclaration.cpp -o TestCircleWithDeclaration.o $(CXXFLAGS)
-
-Circle.o: Circle.cpp
-	$(CPP) -c Circle.cpp -o Circle.o $(CXXFLAGS)
+StringOperators.o: StringOperators.cpp
+	$(CPP) -c StringOperators.cpp -o StringOperators.o $(CXXFLAGS)
