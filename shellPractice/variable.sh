@@ -16,4 +16,7 @@ unset canRemove
 echo 'canRemove is ' $canRemove
 
 #字符串
-
+str='this is a string'
+echo str
+str="Hello, I know you are \"$your_name\"! \n"
+echo str
