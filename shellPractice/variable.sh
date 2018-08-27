@@ -45,3 +45,6 @@ echo ${string:1:4} # 输出 unoo
 # 查找子字符串
 string="runoob is a great site"
 echo `expr index "$string" io`  # 输出 4
+
+
+
