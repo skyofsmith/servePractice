@@ -37,3 +37,11 @@ echo $greeting_2  $greeting_3
 # 获取字符串长度
 string="abcd"
 echo ${#string} #输出 4
+
+# 提取子字符串
+string="runoob is a great site"
+echo ${string:1:4} # 输出 unoo
+
+# 查找子字符串
+string="runoob is a great site"
+echo `expr index "$string" io`  # 输出 4
