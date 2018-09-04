@@ -3,7 +3,7 @@
 using namespace std;
 
 void printCircle (Circle &c) {
-//    cout << "The Object myCircle's address is " << &c << endl;
+//    cout << "The Object c's address is " << &c << endl;
     cout << "The area of the circle of " <<
             c.getRadius() << " is " << c.getArea() << endl;
 }
