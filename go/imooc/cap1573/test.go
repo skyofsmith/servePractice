@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-    fmt.Print(a,"hello imooc")
+    fmt.Print("hello imooc")
     time.Sleep(3*time.Second)
 }
