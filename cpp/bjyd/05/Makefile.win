@@ -1,15 +1,15 @@
-# Project: TestCircle5
+# Project: TestCircle6
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = TestCircle5.o Circle5.o
-LINKOBJ  = TestCircle5.o Circle5.o
+OBJ      = TestCircle6.o Circle6.o
+LINKOBJ  = TestCircle6.o Circle6.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = TestCircle5.exe
+BIN      = TestCircle6.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,8 +24,8 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-TestCircle5.o: TestCircle5.cpp
-	$(CPP) -c TestCircle5.cpp -o TestCircle5.o $(CXXFLAGS)
+TestCircle6.o: TestCircle6.cpp
+	$(CPP) -c TestCircle6.cpp -o TestCircle6.o $(CXXFLAGS)
 
-Circle5.o: Circle5.cpp
-	$(CPP) -c Circle5.cpp -o Circle5.o $(CXXFLAGS)
+Circle6.o: Circle6.cpp
+	$(CPP) -c Circle6.cpp -o Circle6.o $(CXXFLAGS)
