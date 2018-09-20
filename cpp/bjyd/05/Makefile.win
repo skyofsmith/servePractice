@@ -1,15 +1,15 @@
-# Project: TestFriendFunction
+# Project: TestFriendClass
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = TestFriendFunction.o
-LINKOBJ  = TestFriendFunction.o
+OBJ      = TestFriendClass.o
+LINKOBJ  = TestFriendClass.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = TestFriendFunction.exe
+BIN      = TestFriendClass.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,5 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-TestFriendFunction.o: TestFriendFunction.cpp
-	$(CPP) -c TestFriendFunction.cpp -o TestFriendFunction.o $(CXXFLAGS)
+TestFriendClass.o: TestFriendClass.cpp
+	$(CPP) -c TestFriendClass.cpp -o TestFriendClass.o $(CXXFLAGS)
