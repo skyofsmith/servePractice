@@ -4,6 +4,7 @@ class Person
 {
 public:
     Person(int id, int year, int monthm, int day);
+    Person(Person&);
     int getId();
     Date* getBirthDate();
 private:
