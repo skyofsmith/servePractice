@@ -4,7 +4,7 @@ using namespace std;
 
 int main()
 {
-    StackOfInteger stack;
+    StackOfIntegers stack;
     
     for (int i = 0; i < 10; i++)
     {
@@ -13,7 +13,7 @@ int main()
     
     while(!stack.empty())
     {
-        cour << stack.pop() << " ";
+        cout << stack.pop() << " ";
     }
     
 	return 0;

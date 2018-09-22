@@ -1,31 +1,16 @@
-#include "StackOfIntegers.h"
+#pragma once
 
-StackOfIntegers::StackOfIntegers()
+class StackOfIntegers
 {
-    size = 0;
-}
-
-bool StackOfIntegers::empty()
-{
-    return (size == 0);
-}
-
-int StackOfIntegers::peek()
-{
-    return elements[size - 1];
-}
-
-int StackOfIntegers::push(int value)
-{
-    return elements[size++] = value;
-}
-
-int StackOfIntegers::pop()
-{
-    return elements[--size];
-}
-
-int StackOfIntegers::getSize()
-{
-    return size;
-}
+public:
+    StackOfIntegers();
+    bool empty();
+    int peek();
+    int push(int value);
+    int pop();
+    int getSize();
+    
+private:
+    int elements[100];
+    int size;
+};
