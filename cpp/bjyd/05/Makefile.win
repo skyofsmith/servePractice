@@ -1,15 +1,15 @@
-# Project: TestStackOfIntegers
+# Project: TestVector
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = TestStackOfIntegers.o StackOfIntegers.o
-LINKOBJ  = TestStackOfIntegers.o StackOfIntegers.o
+OBJ      = TestVector.o
+LINKOBJ  = TestVector.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = TestStackOfIntegers.exe
+BIN      = TestVector.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,8 +24,5 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-TestStackOfIntegers.o: TestStackOfIntegers.cpp
-	$(CPP) -c TestStackOfIntegers.cpp -o TestStackOfIntegers.o $(CXXFLAGS)
-
-StackOfIntegers.o: StackOfIntegers.cpp
-	$(CPP) -c StackOfIntegers.cpp -o StackOfIntegers.o $(CXXFLAGS)
+TestVector.o: TestVector.cpp
+	$(CPP) -c TestVector.cpp -o TestVector.o $(CXXFLAGS)
