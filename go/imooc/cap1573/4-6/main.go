@@ -35,7 +35,11 @@ const (
 	p
 	q
 )
-
+const (
+	r, s = iota, iota + 3
+	t, u
+	v = iota
+)
 func main() {
 	// fmt.Println(iota)	//error
 	fmt.Println("a: ", a)
@@ -44,4 +48,5 @@ func main() {
 	fmt.Println("h: ", h, "i: ", i, "j: ", j)
 	fmt.Println("k: ", k, "l: ", l, "m: ", m)
 	fmt.Println("n: ", n, "o: ", o, "p: ", p, "q: ", q)
+	fmt.Println("r: ", r, "s: ", s, "t: ", t, "u: ", u, "v: ", v)
 }
