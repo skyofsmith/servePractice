@@ -22,5 +22,7 @@ func main() {
 		fmt.Println("int")
 	case string:
 		fmt.Println("string")
+	default:
+		fmt.Println("neither")
 	}
 }
