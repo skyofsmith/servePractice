@@ -2,20 +2,25 @@ package main
 
 import (
   "fmt"
-  "time"
+  // "time"
 )
 
 func main() {
+  ch := make(chan string)
   for i := 0; i < 5000; i++ {
-    go printHelloWorld(i)
+    go printHelloWorld(i, ch)
   }
 
-  time.Sleep(time.Millisecond)
+  for {
+    msg := <- ch
+    fmt.Println(msg)
+  }
+  // time.Sleep(time.Millisecond)
 }
 
-func printHelloWorld(i int)  {
+func printHelloWorld(i int, ch chan string)  {
   for {
-    fmt.Printf("Hello world from gorountine %d!\n",
+    ch <- fmt.Sprintf("Hello world from gorountine %d!\n",
       i)
   }
 }
