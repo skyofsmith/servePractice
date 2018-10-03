@@ -1,15 +1,15 @@
-# Project: PolymorphismDemo
+# Project: TestGeometricObject2
 # Makefile created by Dev-C++ 5.6.0
 
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = PolymorphismDemo.o
-LINKOBJ  = PolymorphismDemo.o
+OBJ      = TestGeometricObject2.o AbstractGeometricObject.o DerivedCircle2.o Rectangle2.o
+LINKOBJ  = TestGeometricObject2.o AbstractGeometricObject.o DerivedCircle2.o Rectangle2.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/lib" -static-libstdc++ -static-libgcc
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW32/lib/gcc/mingw32/4.8.1/include/c++"
-BIN      = PolymorphismDemo.exe
+BIN      = TestGeometricObject2.exe
 CXXFLAGS = $(CXXINCS) 
 CFLAGS   = $(INCS) 
 RM       = rm -f
@@ -24,5 +24,14 @@ clean: clean-custom
 $(BIN): $(OBJ)
 	$(CPP) $(LINKOBJ) -o $(BIN) $(LIBS)
 
-PolymorphismDemo.o: PolymorphismDemo.cpp
-	$(CPP) -c PolymorphismDemo.cpp -o PolymorphismDemo.o $(CXXFLAGS)
+TestGeometricObject2.o: TestGeometricObject2.cpp
+	$(CPP) -c TestGeometricObject2.cpp -o TestGeometricObject2.o $(CXXFLAGS)
+
+AbstractGeometricObject.o: AbstractGeometricObject.cpp
+	$(CPP) -c AbstractGeometricObject.cpp -o AbstractGeometricObject.o $(CXXFLAGS)
+
+DerivedCircle2.o: DerivedCircle2.cpp
+	$(CPP) -c DerivedCircle2.cpp -o DerivedCircle2.o $(CXXFLAGS)
+
+Rectangle2.o: Rectangle2.cpp
+	$(CPP) -c Rectangle2.cpp -o Rectangle2.o $(CXXFLAGS)
