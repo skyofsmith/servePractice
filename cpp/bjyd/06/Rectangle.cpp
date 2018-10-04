@@ -39,5 +39,5 @@ double Rectangle::getArea()
 
 double Rectangle::getPerimeter()
 {
-    return 2 * (width_ * height_);
+    return 2 * (width_ + height_);
 }

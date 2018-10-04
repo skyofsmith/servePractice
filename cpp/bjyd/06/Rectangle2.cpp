@@ -1,4 +1,4 @@
-#include "Rectangle.h"
+#include "Rectangle2.h"
 
 Rectangle::Rectangle()
 {
@@ -39,5 +39,5 @@ double Rectangle::getArea()
 
 double Rectangle::getPerimeter()
 {
-    return 2 * (width_ * height_);
+    return 2 * (width_ + height_);
 }

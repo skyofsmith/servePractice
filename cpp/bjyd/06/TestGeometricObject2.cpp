@@ -1,5 +1,5 @@
 #include <iostream>
-#include "AbstractGeometricObject.h"
+//#include "AbstractGeometricObject.h"
 #include "DerivedCircle2.h"
 #include "Rectangle2.h"
 using namespace std;
