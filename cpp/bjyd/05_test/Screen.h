@@ -8,7 +8,7 @@ private:
     string enter_;
     string leave_;
     void exitWhenInvalidScreen();
-    static Screen* instance_ = 0;
+    static Screen* instance_;
 
 public:
     Screen (int, int);
@@ -16,5 +16,6 @@ public:
     int getHeight();
     int setWidth(int);
     int setHeight(int);
-    static Screen* getInstance(int width = 640, int height = 480);
+    static Screen* getInstance(int width, int height);
+    static Screen* getInstance();
 };

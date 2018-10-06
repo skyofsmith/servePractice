@@ -2,6 +2,7 @@
 #include <cstdlib>
 #include "Screen.h"
 
+Screen* instance_ = NULL;
 Screen::Screen (int width, int height) {
     width_ = width;
     height_ = height;
@@ -34,8 +35,16 @@ int Screen::setHeight(int height) {
 
 Screen* Screen::getInstance(int width, int height)
 {
-  if (instance_ == 0) {
-    instance_ = new Screen(width, height);
+  if (Screen::instance_ == NULL) {
+    Screen::instance_ = new Screen(width, height);
   }
-  return instance_;
+  return Screen::instance_;
+}
+
+Screen* Screen::getInstance()
+{
+  if (Screen::instance_ == NULL) {
+    Screen::instance_ = new Screen(640, 480);
+  }
+  return Screen::instance_;
 }
