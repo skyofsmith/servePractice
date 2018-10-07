@@ -1,4 +1,5 @@
-#include "Screen3.h"
+#pragma once
+#include "Screen4.h"
 
 class MyRectangle {
 private:

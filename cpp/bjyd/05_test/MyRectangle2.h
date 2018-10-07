@@ -1,4 +1,5 @@
-#include "Screen3.h"
+#pragma once
+#include "Screen4.h"
 
 class MyRectangle {
 private:
@@ -17,6 +18,6 @@ public:
     void setCoordinations(int, int, int, int);
     void setScreen(Screen&);
     void setColor(int, int, int);
-    Screen* showScreen();
+    void showScreen();
     void Draw();
 };

@@ -9,7 +9,6 @@ private:
     string enter_;
     string leave_;
     void exitWhenInvalidScreen();
-//    static Screen* instance_;
 
 public:
     Screen (int, int);

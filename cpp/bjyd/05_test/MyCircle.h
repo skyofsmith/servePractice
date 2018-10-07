@@ -1,18 +1,27 @@
 #pragma once
+#include "Screen4.h"
 
-class Circle
+class MyCircle
 {
 public:
-    Circle();
-    Circle(double);
-    ~Circle();
+    MyCircle();
+    MyCircle(int, int, int, Screen*);
+    MyCircle(const MyCircle&);
     double getArea();
-    double getRadius();
-    void setRadius(double);
-    static int getNumberOfObjects();    //static function
+    int getRadius();
+    void showScreen();
+    void setRadius(int);
+    void setCenter(int, int);
+    void setColor(int, int, int);
+    void setScreen(Screen&);
+    void Draw();
 
 private:
-    double radius;
-    static int numberOfObjects;         //static variable
+    int x_;
+    int y_;
+    int radius_;
+    int red_;
+    int green_;
+    int blue_;
+    Screen* screen_;
 };
-

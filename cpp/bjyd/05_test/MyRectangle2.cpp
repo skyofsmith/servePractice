@@ -1,5 +1,5 @@
-#include "MyRectangle.h"
 #include <iostream>
+#include "MyRectangle2.h"
 
 MyRectangle::MyRectangle(){
     x1_ = 10;
@@ -49,9 +49,8 @@ void MyRectangle::setColor(int R, int G, int B){
   green_ = G;
   blue_ = B;
 }
-Screen* MyRectangle::showScreen(){
-  
-  return screen_;
+void MyRectangle::showScreen(){
+  std::cout << screen_ -> getWidth() << " " << screen_ -> getHeight() << std::endl;
 }
 void MyRectangle::Draw() {
     std::cout << x1_ << " " << y1_ << " " << x2_ - x1_ << " " << y2_ - y1_ << std::endl;
