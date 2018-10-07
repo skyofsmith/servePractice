@@ -6,14 +6,14 @@ class MyCircle
 public:
     MyCircle();
     MyCircle(int, int, int, Screen*);
-    MyCircle(const MyCircle&);
+    MyCircle(const MyCircle& mycircle);
     double getArea();
     int getRadius();
     void showScreen();
     void setRadius(int);
     void setCenter(int, int);
     void setColor(int, int, int);
-    void setScreen(Screen&);
+    void setScreen(const Screen&);
     void Draw();
 
 private:

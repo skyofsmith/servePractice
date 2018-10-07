@@ -67,7 +67,7 @@ void MyCircle::setColor(int R, int G, int B){
     blue_ = B;
 }
 
-void setScreen(Screen& screen){
+void setScreen(const Screen& screen){
   screen_ = &screen;
 }
 
