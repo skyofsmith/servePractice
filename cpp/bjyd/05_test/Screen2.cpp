@@ -44,21 +44,21 @@ int Screen::setHeight(int height) {
 
 Screen* Screen::getInstance(int width, int height)
 {
-  if (Screen::instance_ == NULL) {
-    Screen::instance_ = new Screen(width, height);
+  if (instance_ == NULL) {
+    instance_ = new Screen(width, height);
   }
-  return Screen::instance_;
+  return instance_;
 }
 
 Screen* Screen::getInstance()
 {
-  if (Screen::instance_ == NULL) {
-    Screen::instance_ = new Screen(640, 480);
+  if (instance_ == NULL) {
+    instance_ = new Screen(640, 480);
   }
-  return Screen::instance_;
+  return instance_;
 }
 
 void Screen::deleteInstance(){
   delete(this);
-  Screen::instance_ = NULL;
+  instance_ = NULL;
 }
