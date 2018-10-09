@@ -13,7 +13,7 @@ public:
     void setRadius(int);
     void setCenter(int, int);
     void setColor(int, int, int);
-    void setScreen(const Screen&);
+    void setScreen(Screen&);
     void Draw();
 
 private:

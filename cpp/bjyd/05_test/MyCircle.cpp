@@ -47,7 +47,7 @@ int MyCircle::getRadius()
     return radius_;
 }
 
-void showScreen(){
+void MyCircle::showScreen(){
   std::cout << screen_ -> getWidth() << " " << screen_ -> getHeight() << std::endl;
 }
 
@@ -67,7 +67,7 @@ void MyCircle::setColor(int R, int G, int B){
     blue_ = B;
 }
 
-void setScreen(const Screen& screen){
+void MyCircle::setScreen(Screen& screen){
   screen_ = &screen;
 }
 
