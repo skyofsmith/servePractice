@@ -1,5 +1,5 @@
 #include <iostream>
-#include "MyRectangle2.h"
+#include "MyRectangle.h"
 
 MyRectangle::MyRectangle(){
     x1_ = 10;

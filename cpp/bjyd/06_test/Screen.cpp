@@ -1,6 +1,6 @@
 #include <iostream>
 #include <cstdlib>
-#include "Screen4.h"
+#include "Screen.h"
 
 Screen* instance_ = NULL;
 Screen::Screen (int width, int height) {
