@@ -1,19 +1,24 @@
+#include <iostream>
 #include "MyShape.h"
+using namespace std;
 
-MyShape::MyShape(){
+MyShape::MyShape():type_("myshape"){
   red_ = 255;
   green_ = 255;
   blue_ = 255;
 }
 
-MyShape::MyShape(Screen* screen){
+MyShape::MyShape(Screen* screen):type_("myshape"){
+  red_ = 255;
+  green_ = 255;
+  blue_ = 255;
   screen_ = screen;
 }
 
-MyShape::MyShape(int R, int G, int B, Screen* screen){
-  red_ = 255;
-  green_ = 255;
-  blue_ = 255;
+MyShape::MyShape(int R, int G, int B, Screen* screen):type_("myshape"){
+  red_ = R;
+  green_ = G;
+  blue_ = B;
   screen_ = screen;
 }
 
@@ -40,5 +45,6 @@ void MyShape::setScreen(Screen& screen){
 }
 
 void MyShape::Draw() {
-
+  cout << "[" << screen_->getWidth() << "X" << screen_->getHeight() << "]" << type_ <<
+  "(" << red_ << "," << green_ << "," << blue_ << ")" << endl;
 }
