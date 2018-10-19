@@ -44,7 +44,7 @@ void MyShape::setScreen(Screen& screen){
   screen_ = &screen;
 }
 
-void MyShape::Draw() {
+void MyShape::showShape() {
   cout << "[" << screen_->getWidth() << "X" << screen_->getHeight() << "]" << type_ <<
   "(" << red_ << "," << green_ << "," << blue_ << ")" << endl;
 }

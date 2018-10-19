@@ -1,7 +1,7 @@
 #pragma once
 #include "Screen.h"
 
-class MyRectangle {
+class MyRectangle: public MyShape {
 private:
     int x1_;
     int y1_;

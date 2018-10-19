@@ -20,5 +20,5 @@ public:
   int getBlue();
   void setColor(int, int, int);
   void setScreen(Screen&);
-  void Draw();
+  void showShape();
 };
