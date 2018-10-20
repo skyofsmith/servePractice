@@ -1,7 +1,7 @@
 #pragma once
 #include "Screen.h"
 
-class MyCircle
+class MyCircle: public MyShape
 {
 public:
     MyCircle();
