@@ -1,8 +1,6 @@
 var student = require('./student');
 var teacher = require('./teacher');
 
-teacher.add('teacher1')
-
 function add(teacherName, students) {
     teacher.add(teacherName);
 
@@ -10,4 +8,4 @@ function add(teacherName, students) {
         student.add(item);
     });
 }
-module.exports = add;
+exports.add = add;
