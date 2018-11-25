@@ -25,3 +25,10 @@ console.log(path);
 
 var nPath = url.resolve('http://about.com/', '/course/list');
 console.log(nPath);
+
+var res2 = url.parse(url1, true);
+console.log(res2);
+//解析query
+
+var res3 = url.parse('//imooc.com/a/b', true, true);
+console.log(res3);
