@@ -12,3 +12,8 @@ var p2 = querystring.parse(s2, ',');
 console.log(p2);
 var p3 = querystring.parse(s3, ',', ':');
 console.log(p3);
+
+var e1 = querystring.escape('哈哈>');
+console.log(e1);
+var e2 = querystring.unescape(e1);
+console.log(e2);
