@@ -32,3 +32,4 @@ console.log(res2);
 
 var res3 = url.parse('//imooc.com/a/b', true, true);
 console.log(res3);
+//正确识别url
