@@ -17,8 +17,29 @@
 */
 /*
     request
+    请求方式：
+    GET
+    POST
+    PUT
+    DELETE
+    HEAD
+    TRACE
+    OPTIONS
 
-    
+    请求组成：
+请求方式 url http版本
+key: value
+...
+
+请求body
+
 
     response
+    响应组成：
+    http版本 响应状态码 响应成功或失败
+    key: value
+    ...
+
+    响应body
+    
 */
