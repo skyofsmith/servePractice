@@ -29,4 +29,6 @@ var req = http.request(options, function(res) {
         console.log('comment finished!');
     });
 
+    req.write(postData);
+    req.end();
 });
