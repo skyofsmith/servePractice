@@ -45,7 +45,7 @@ life.on('niai', function(who) {
 });
 
 life.removeListener('anwei', water);
-life.removeAllListeners();
+life.removeAllListeners('anwei');
 
 var hasConfortListerer = life.emit('anwei', 'sam');
 var hasLovedListerer = life.emit('niai', 'girl');
@@ -56,3 +56,4 @@ console.log(hasLovedListerer);
 
 console.log(life.listeners('anwei').length);
 console.log(EventEmitter.listenerCount(life, 'anwei'));
+console.log(EventEmitter.listenerCount(life, 'niai'));
