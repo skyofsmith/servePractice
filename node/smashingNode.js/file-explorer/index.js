@@ -33,5 +33,5 @@ fs.readdir(process.cwd(), function(err, files) {
     });
   }
 
-  file(0);
+  // file(0);
 });
