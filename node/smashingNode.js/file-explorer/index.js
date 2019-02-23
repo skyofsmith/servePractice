@@ -2,36 +2,43 @@
  * Module dependencies.
  */
 
-var fs = require('fs');
+var fs = require('fs')
+var stdout = process.stdout
+var stdin = process.stdin
 fs.readdir(process.cwd(), function(err, files) {
-  console.log('');
+  console.log('')
 
   if (!files.length) {
-    return console.log('    \033[31m No files to show!\033[39m\n');
+    return console.log('    \033[31m No files to show!\033[39m\n')
   }
 
-  console.log('    Select which file or directory you want to see\n');
+  console.log('    Select which file or directory you want to see\n')
 
   function file(i) {
-    var filename = files[i];
-    
-    fs.stat(__dirname + '/' + filename, function (err, stat) {
+    var filename = files[i]
+
+    fs.stat(__dirname + '/' + filename, function(err, stat) {
       if (stat.isDirectory()) {
-        console.log('    ' + i + '    \033[36m' + filename + '/\033[39m\n');
+        console.log('    ' + i + '    \033[36m' + filename + '/\033[39m\n')
       } else {
-        console.log('    ' + i + '    \033[90m' + filename + '\033[39m\n');
+        console.log('    ' + i + '    \033[90m' + filename + '\033[39m\n')
       }
 
-      i++;
+      i++
       if (i === files.length) {
-        console.log('');
-        process.stdout.write('    \033[33mEnter your choice: \033[39m\n');
-        process.stdin.resume();
+        read()
       } else {
-        file(i);
+        file(i)
       }
-    });
+    })
   }
 
-  // file(0);
-});
+  file(0);
+})
+
+function read() {
+  console.log('')
+  stdout.write('    \033[33mEnter your choice: \033[39m\n')
+  stdin.resume()
+  stdin.setEncoding('utf-8')
+}
