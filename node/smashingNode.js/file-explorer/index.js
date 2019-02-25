@@ -24,7 +24,7 @@ fs.readdir(process.cwd(), function(err, files) {
         console.log('    ' + i + '    \033[90m' + filename + '\033[39m\n');
       }
 
-      i++
+      i++;
       if (i === files.length) {
         read();
       } else {
