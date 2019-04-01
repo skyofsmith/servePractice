@@ -49,8 +49,12 @@ function getData(m, d) {
     });
     res.on('end', () => {
       try {
-        // let obj = JSON.parse(result);
-        insertData([m * 1, d * 1, result]);
+        let obj = JSON.parse(result);
+        if (obj.retCode === '200') {
+          _.map(obj.result, function(info){
+            insertIntoTable([info.month, info.day, info.date, info.title, info.event]);
+          });
+        }
       } catch (e) {
         console.error(e)
       }
@@ -69,6 +73,15 @@ function queryData () {
   });
 }
 
+function insertIntoTable(datas) {
+  connection.query('INSERT INTO history_of_today SET month = ?, day = ?, date = ?, title = ?, event = ?', datas, function (err, result) {
+    if (err) {
+      console.log(err)
+    }
+    console.log(result)
+  });
+}
+
 function insertData(datas) {
   connection.query('INSERT INTO history_test SET month = ?, day = ?, result = ?', datas, function (err, result) {
     if (err) {
@@ -78,4 +91,4 @@ function insertData(datas) {
   });
 }
 
-connection.end();
+// connection.end();
