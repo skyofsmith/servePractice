@@ -31,7 +31,13 @@ MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
   insertDocuments(db, function (res) {
     findDocuments(db, function (res) {
       findDocuments(db, function (res) {
-        client.close()
+        updateDocument(db, function (res) {
+          removeDocument(db, function (res) {
+            indexCollection(db, function (res) {
+              client.close();
+            });
+          });
+        });
       });
     });
   });
@@ -59,3 +65,37 @@ function findDocuments(db, callback) {
     callback(docs);
   });
 }
+
+function updateDocument(db, callback) {
+  // Get the documents collection
+  const collection = db.collection('documents');
+  // Update document where a is 2, set b equal to 1
+  collection.updateOne({ a : 2 }
+    , { $set: { b : 1 } }, function(err, result) {
+      assert.equal(err, null);
+      assert.equal(1, result.result.n);
+      console.log("Updated the document with the field a equal to 2");
+      callback(result);
+    });
+}
+function removeDocument(db, callback) {
+  // Get the documents collection
+  const collection = db.collection('documents');
+  // Delete document where a is 3
+  collection.deleteOne({ a : 3 }, function(err, result) {
+    assert.equal(err, null);
+    assert.equal(1, result.result.n);
+    console.log("Removed the document with the field a equal to 3");
+    callback(result);
+  });
+}
+function indexCollection(db, callback) {
+  db.collection('documents').createIndex(
+    { "a": 1 },
+    null,
+    function(err, results) {
+      console.log(results);
+      callback();
+    }
+  );
+};
