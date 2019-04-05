@@ -13,9 +13,9 @@ MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
   const collection = db.collection(collectionName);
   for (let m = 1; m <= 12; m++) {
     for (let d = 1; d <= 31; d++) {
-      let res = solarlunar.solar2lunar(2019, m, d);
+      let res = solarlunar.solar2lunar(2020, m, d);
       collection.insertOne({
-        year: 2019,
+        year: 2020,
         month: m,
         date: d,
         lunarYear: res.lYear,
