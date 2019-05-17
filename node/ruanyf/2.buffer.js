@@ -25,7 +25,7 @@
 {
   // 参数是整数，指定分配多少个字节内存
   let hello = new Buffer(5);
-
+  console.log(hello.toString());
   // 参数是数组，数组成员必须是整数值
   hello = new Buffer([0x48, 0x65, 0x6c, 0x6c, 0x6f]);
   console.log(hello.toString());
