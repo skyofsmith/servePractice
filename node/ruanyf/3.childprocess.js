@@ -3,6 +3,9 @@ const path = require('path');
 const exec = childProcess.exec;
 const execSync = childProcess.execSync;
 const execFile = childProcess.execFile;
+const spawn = childProcess.spawn;
+const fork = childProcess.fork;
+const send = childProcess.send;
 
 // 1.exec
 {
@@ -69,5 +72,36 @@ const execFile = childProcess.execFile;
 
 // 4.spawn
 {
-
+  let path = '.';
+  let ls = spawn('/bin/ls', ['-l', path]);
+  ls.stdout.on('data', data => {
+    console.log('stdout: ' + data);
+  });
+  ls.stderr.on('data', data => {
+    console.log('stderr: ' + data);
+  });
+  ls.on('close', code => {
+    console.log('child process exited with code ' + code);
+  });
 }
+
+// 5.fork
+{
+  let f = fork('./_child.js');
+  f.on('message', m => {
+    console.log('PARENT got message: ', m);
+  });
+  f.send({
+    hello: 'world'
+  });
+}
+
+
+// 6.send
+// _child.js
+/*
+process.on('message', function(m) {
+  console.log('CHILD got message:', m);
+});
+process.send({ foo: 'bar' });
+*/
