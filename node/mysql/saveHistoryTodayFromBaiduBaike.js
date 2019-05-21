@@ -16,7 +16,7 @@ function html2text(html) {
   div.innerHTML = html;
   return div.innerText;
 }
-function saveData2mysql (obj, m) {
+function saveData2mysql (obj, m, d) {
   console.log(m, obj)
 }
 function readDataFromJSON (month) {
@@ -30,8 +30,9 @@ function readDataFromJSON (month) {
   }
   let arr = result[monthStr];
   console.log(arr);
-  _.each(arr, obj => {
-    saveData2mysql(obj, monthStr)
+  _.each(arr, (obj, key) => {
+    let [mon, day] = key.match(/\d{2}/g);
+    saveData2mysql(obj, mon, day)
   })
 }
 // _.chain(1).range(13).each(readDataFromJSON).value();
