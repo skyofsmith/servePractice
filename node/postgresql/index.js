@@ -9,7 +9,7 @@ client.connect(function(err) {
   if(err) {
     return console.error('error fetching client from pool', err);
   }
-  client.query('select 1 + 1 as res', function(err, result) {
+  client.query('select * from public.user', function(err, result) {
     //call `done()` to release the client back to the pool
     // pg.end();
     if(err) {
