@@ -18,4 +18,10 @@ client.connect(function(err) {
     console.log(result.rows[0]);
     //output: 1
   });
+  client.query(`insert into public.user(id, name, age) values(2, 'nan', 28)`, (err, result) => {
+    if(err) {
+      return console.error('error running query', err);
+    }
+    console.log(result);
+  })
 });
