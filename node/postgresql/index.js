@@ -15,13 +15,19 @@ client.connect(function(err) {
     if(err) {
       return console.error('error running query', err);
     }
-    console.log(result.rows[0]);
-    //output: 1
+    console.debug(result.rows);
+    let len = result.rows.length + 1
+    client.query(`insert into public.user(id, name, age) values(${len}, '${len}th', 28)`, (err, result) => {
+      if(err) {
+        return console.error('error running query', err);
+      }
+      console.debug(result);
+      client.query(`update public.user set age = 29 where id = 1`).then((err, result) => {
+        if(err) {
+          return console.error('error running query', err);
+        }
+        console.debug(result);
+      })
+    });
   });
-  client.query(`insert into public.user(id, name, age) values(2, 'nan', 28)`, (err, result) => {
-    if(err) {
-      return console.error('error running query', err);
-    }
-    console.log(result);
-  })
 });
