@@ -17,33 +17,40 @@ function createRandom() {
 
 async function main() {
   console.time('queryCount');
-  connection.query('select count(*) as count from count', (err, res) => {
-    if (err) {
-      return
-    }
-    console.log(res[0].count);
-    console.timeEnd('queryCount');
-  });
-  console.time('query');
-  connection.query('select * from count', (err, res) => {
-    if (err) {
-      return
-    }
-    console.timeEnd('query');
-  });
-  // console.time('insert');
-  // let id = 0;
-  // for (let i = 0; i < NUMBER_COUNTS; i++) {
-  //   await connection.query(`insert into count values(?, ?)`, [id++, createRandom()], (err, res) => {
-  //     if (err) {
-  //       return
-  //     }
-  //   });
-  // }
-  // console.timeEnd('insert');
-  // await connection.end();
-}
+  let countRes = await query('select count(*) as count from count');
+  console.log(countRes[0].count);
+  console.timeEnd('queryCount');
 
+  console.time('query');
+  let queryRes = await query('select * from count');
+  console.log(queryRes);
+  console.timeEnd('query');
+
+  console.time('insert');
+  let id = countRes[0].count;
+  for (let i = 0; i < NUMBER_COUNTS; i++) {
+    await insertRow(id++, createRandom());
+  }
+  console.timeEnd('insert');
+
+
+  console.time('query');
+  let queryRes2 = await query('select * from count');
+  console.log(queryRes2);
+  console.timeEnd('query');
+
+  await connection.end();
+}
+async function query (sql, arr) {
+  return new Promise((resolve, reject) => {
+    connection.query(sql, arr, (err, res) => {
+      if (err) {
+        reject(err)
+      }
+      resolve(res)
+    })
+  })
+}
 async function insertRow(id, count) {
   return new Promise((resolve, reject) => {
     connection.query(`insert into count values(?, ?)`, [id, count], (err, res) => {
@@ -54,5 +61,10 @@ async function insertRow(id, count) {
     })
   })
 }
-
-// main();
+main();
+/*
+* queryCount: 19.549ms
+* query: 0.884ms
+* insert: 66001.529ms
+* query: 58.154ms
+* */
