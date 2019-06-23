@@ -18,13 +18,11 @@ function createRandom() {
 async function main() {
 
   console.time('delete');
-  let deleteRes = await deleteAll();
-  console.log(deleteRes);
+  await deleteAll();
   console.timeEnd('delete');
 
   console.time('queryCount');
-  let countRes = await query('select count(*) as count from count');
-  console.log(countRes[0].count);
+  await query('select count(*) as count from count');
   console.timeEnd('queryCount');
 
   console.time('query');
@@ -32,7 +30,7 @@ async function main() {
   console.timeEnd('query');
 
   console.time('insert');
-  let id = countRes[0].count;
+  let id = 0;
   for (let i = 0; i < NUMBER_COUNTS; i++) {
     await insertRow(id++, createRandom());
   }
@@ -43,13 +41,11 @@ async function main() {
   console.timeEnd('query');
 
   console.time('query');
-  let queryRes2 = await query('select * from count');
-  console.log(queryRes2);
+  await query('select * from count');
   console.timeEnd('query');
 
   console.time('update');
-  let updateRes = await updateAll();
-  console.log(updateRes);
+  await updateAll();
   console.timeEnd('update');
 
   await connection.end();
@@ -96,8 +92,11 @@ async function deleteAll() {
 }
 main();
 /*
-* queryCount: 19.549ms
-* query: 0.884ms
-* insert: 66001.529ms
-* query: 58.154ms
+* delete: 16.523ms
+* queryCount: 1.879ms
+* query: 0.556ms
+* insert: 63795.645ms
+* query: 86.661ms
+* query: 28.085ms
+* update: 168.973ms
 * */
