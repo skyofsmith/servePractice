@@ -40,3 +40,10 @@ async function main() {
 }
 
 main();
+/*
+delete: 21.301ms
+query: 3.078ms
+queryCount: 1.271ms
+insert: 12146.747ms
+update: 144.865ms
+*/
