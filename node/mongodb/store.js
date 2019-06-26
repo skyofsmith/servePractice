@@ -9,11 +9,33 @@ const url = 'mongodb://localhost:27017';
 const dbName = 'test';
 
 async function main() {
-  let res = await MongoClient.connect(url);
-  console.log(res);
+  let client = await getClient(url);
+  console.log(client);
+  let test = client.db(dbName);
 }
 main();
-
+async function getClient() {
+  return new Promise((resolve, reject) => {
+    MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
+      if (err) {
+        reject(err);
+      }
+      console.log("Connected successfully to server");
+      resolve(client);
+    })
+  })
+}
+async function insert(collection, datas) {
+  return new Promise((resolve, reject) => {
+    collection.insertMany(datas, function (err, result) {
+      if (err) {
+        reject(err);
+      }
+      console.log("Inserted 3 documents into the collection");
+      resolve(result);
+    });
+  })
+}
 function insertDocuments(db, callback) {
   // Get the documents collection
   const collection = db.collection('documents');
