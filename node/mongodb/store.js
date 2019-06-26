@@ -7,124 +7,87 @@ const url = 'mongodb://localhost:27017';
 
 // Database Name
 const dbName = 'test';
+const collectionName = 'count';
 
 async function main() {
   let client = await getClient(url);
-  console.log(client);
-  let test = client.db(dbName);
+  let db = client.db(dbName);
+  let collection = db.collection(collectionName);
+  console.log(await find(collection));
+  console.log(await insert(collection, [{count: 1}]));
+  console.log(await find(collection));
+  console.log(await update(collection,{count: 1}, {count: 2}));
+  console.log(await find(collection));
+  console.log(await remove(collection, {count: 2}));
+  console.log(await find(collection));
+  await client.close();
 }
+
 main();
+
 async function getClient() {
   return new Promise((resolve, reject) => {
     MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
       if (err) {
         reject(err);
       }
-      console.log("Connected successfully to server");
       resolve(client);
     })
   })
 }
+
 async function insert(collection, datas) {
   return new Promise((resolve, reject) => {
-    collection.insertMany(datas, function (err, result) {
+    collection.insertMany([].concat(datas), function (err, result) {
       if (err) {
         reject(err);
       }
-      console.log("Inserted 3 documents into the collection");
       resolve(result);
     });
   })
 }
-function insertDocuments(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Insert some documents
-  collection.insertMany([
-    {a: 1}, {a: 2}, {a: 3}
-  ], function (err, result) {
-    assert.equal(err, null);
-    assert.equal(3, result.result.n);
-    assert.equal(3, result.ops.length);
-    console.log("Inserted 3 documents into the collection");
-    callback(result);
-  });
-}
-/*
-// Use connect method to connect to the server
-MongoClient.connect(url, {useNewUrlParser: true}, function (err, client) {
-  assert.equal(null, err);
-  console.log("Connected successfully to server");
 
-  const db = client.db(dbName);
-  insertDocuments(db, function (res) {
-    findDocuments(db, function (res) {
-      findDocuments(db, function (res) {
-        updateDocument(db, function (res) {
-          removeDocument(db, function (res) {
-            indexCollection(db, function (res) {
-              client.close();
-            });
-          });
-        });
+async function find(collection, filter) {
+  return new Promise((resolve, reject) => {
+    collection.find(filter || {}).toArray(function (err, docs) {
+      if (err) {
+        reject(err);
+      }
+      resolve(docs);
+    })
+  })
+}
+
+async function update(collection, oldValue, newValue) {
+  return new Promise((resolve, reject) => {
+    collection.updateOne(oldValue
+      , {$set: newValue}, function (err, result) {
+        if (err) {
+          reject(err);
+        }
+        resolve(result);
       });
-    });
-  });
-});
-*/
-function findDocuments(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Find some documents
-  collection.find({}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    console.log("Found the following records");
-    console.log(docs);
-    callback(docs);
-  });
-}
-function findDocuments(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Find some documents
-  collection.find({'a': 3}).toArray(function(err, docs) {
-    assert.equal(err, null);
-    console.log("Found the following records");
-    console.log(docs);
-    callback(docs);
-  });
+  })
 }
 
-function updateDocument(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Update document where a is 2, set b equal to 1
-  collection.updateOne({ a : 2 }
-    , { $set: { b : 1 } }, function(err, result) {
-      assert.equal(err, null);
-      assert.equal(1, result.result.n);
-      console.log("Updated the document with the field a equal to 2");
-      callback(result);
+async function remove(collection, data) {
+  return new Promise((resolve, reject) => {
+    collection.deleteOne(data, function (err, result) {
+        if (err) {
+          reject(err);
+        }
+        resolve(result);
+      });
+  })
+}
+
+async function index(collection, data) {
+  return new Promise((resolve, reject) => {
+    collection.createIndex(data, null, function (err, result) {
+      if (err) {
+        reject(err);
+      }
+      resolve(result);
     });
+  })
 }
-function removeDocument(db, callback) {
-  // Get the documents collection
-  const collection = db.collection('documents');
-  // Delete document where a is 3
-  collection.deleteOne({ a : 3 }, function(err, result) {
-    assert.equal(err, null);
-    assert.equal(1, result.result.n);
-    console.log("Removed the document with the field a equal to 3");
-    callback(result);
-  });
-}
-function indexCollection(db, callback) {
-  db.collection('documents').createIndex(
-    { "a": 1 },
-    null,
-    function(err, results) {
-      console.log(results);
-      callback();
-    }
-  );
-};
