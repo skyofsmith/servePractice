@@ -14,11 +14,11 @@ async function main() {
   let db = client.db(dbName);
   let collection = db.collection(collectionName);
   console.log(await find(collection));
-  console.log(await insert(collection, [{count: 1}]));
+  console.log(await insert(collection, [{count: 1},{count: 2},{count: 3}]));
   console.log(await find(collection));
-  console.log(await update(collection,{count: 1}, {count: 2}));
+  console.log(await update(collection,{count: 1}, {count: 0}));
   console.log(await find(collection));
-  console.log(await remove(collection, {count: 2}));
+  console.log(await remove(collection, {count: 3}));
   console.log(await find(collection));
   await client.close();
 }
