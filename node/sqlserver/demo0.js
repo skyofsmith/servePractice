@@ -1,3 +1,4 @@
+require('babel-core/register');
 const sql = require('mssql');
 
 const config = {
@@ -9,16 +10,10 @@ const config = {
     encrypt: true //使用windows azure，需要设置次配置。
   }
 };
-
-sql.connect(config).then(() => {
-  return sql.query`select * from [user]`
-}).then(result => {
-  console.log(result);
-
-}).catch(err => {
-  console.error(err);
-});
-
-sql.on('error', err => {
-  console.error(err);
-});
+async function main () {
+  
+  await sql.connect(config);
+  let res = sql.query`select * from [user]`;
+  console.log(res)
+}
+main();
