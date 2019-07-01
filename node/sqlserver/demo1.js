@@ -11,33 +11,41 @@ const config = {
     encrypt: true //使用windows azure，需要设置次配置。
   }
 };
+const AMOUNT = 30000;
 
 (async function () {
   try {
     let pool = await sql.connect(config);
+    console.time('delete');
+    let selectRes = await pool.request().query('DELETE FROM [USER]');
+    console.log(selectRes);
+    console.timeEnd('delete');
+
+    console.time('insert');
+    for (let i = 0; i < AMOUNT; i++) {
+      await pool.request()
+        .input('id', sql.Int, i)
+        .input('name', sql.NVarChar, Random.name())
+        .input('age', sql.Int, Random.natural(20, 45))
+        .query('INSERT INTO [USER] VALUES(@id, @name, @age)');
+      // console.log(insertRes);
+    }
+    console.timeEnd('insert');
+
+    console.time('count');
     let countRes = await pool.request()
-      // .input('input_parameter', sql.Int, -1)
       .query('SELECT count(*) AS count From [user]');
 
     let count = countRes.recordset[0].count;
     console.dir(countRes, count);
+    console.timeEnd('count');
 
-    let insertRes = await pool.request()
-      .input('id', sql.Int, 2)
-      .input('name', sql.NVarChar, 'sam')
-      .input('age', sql.Int, 29)
-      .query('insert into [user] values(@id, @name, @age)');
+    console.time('query');
+    let queryRes = await pool.request()
+      .query('SELECT * From [user]');
+    console.dir(queryRes);
+    console.timeEnd('query');
 
-    console.log(insertRes);
-
-    // Stored procedure
-
-    // let result2 = await pool.request()
-    //   .input('input_parameter', sql.Int, -1)
-    //   .output('output_parameter', sql.VarChar(50))
-    //   .execute('procedure_name')
-    //
-    // console.dir(result2)
     await pool.close()
   } catch (err) {
     console.log(err)
@@ -59,3 +67,8 @@ sql.Table -> sql.TVP
 *
 *
 * */
+
+// delete: 181.397ms
+// insert: 19793.614ms
+// count: 5.563ms
+// query: 299.698ms
