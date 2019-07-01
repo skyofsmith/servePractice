@@ -1,29 +1,64 @@
 require('babel-core/register');
 const MongoClient = require('mongodb').MongoClient;
-const assert = require('assert');
+const Mock = require('mockjs');
+const Random = Mock.Random;
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
-
+const AMOUNT = 30000;
 // Database Name
 const dbName = 'test';
 const collectionName = 'count';
 
 async function main() {
-  let client = await getClient(url);
-  let db = client.db(dbName);
-  let collection = db.collection(collectionName);
-  console.log(await find(collection));
-  console.log(await insert(collection, [{count: 1},{count: 2},{count: 3}]));
-  console.log(await find(collection));
-  console.log(await update(collection,{count: 1}, {count: 0}));
-  console.log(await find(collection));
-  console.log(await remove(collection, {count: 3}));
-  console.log(await find(collection));
-  await client.close();
+  try {
+
+    let client = await getClient(url);
+    let db = client.db(dbName);
+    let collection = db.collection(collectionName);
+
+    console.time('remove');
+    await remove(collection);
+    console.timeEnd('remove');
+
+    console.time('find0');
+    await find(collection);
+    console.timeEnd('find0');
+
+    console.time('insert');
+    let res = [];
+    for (let i = 0; i < AMOUNT; i++) {
+      res.push({
+        name: Random.name(),
+        age: Random.natural(20, 45)
+      })
+    }
+    await insert(collection, res);
+    console.timeEnd('insert');
+
+    console.time('update');
+    await update(collection, {count: 1}, {count: 0});
+    console.timeEnd('update');
+
+
+    console.time('find');
+    await find(collection);
+    console.timeEnd('find');
+
+    await client.close();
+
+  } catch (e) {
+    console.log(e);
+    await client.close();
+  }
 }
 
 main();
+// remove: 7.068ms
+// find0: 250.888ms
+// insert: 427.607ms
+// update: 38.330ms
+// find: 336.604ms
 
 async function getClient() {
   return new Promise((resolve, reject) => {
@@ -60,7 +95,7 @@ async function find(collection, filter) {
 
 async function update(collection, oldValue, newValue) {
   return new Promise((resolve, reject) => {
-    collection.updateOne(oldValue
+    collection.updateOne(oldValue || {}
       , {$set: newValue}, function (err, result) {
         if (err) {
           reject(err);
@@ -72,12 +107,12 @@ async function update(collection, oldValue, newValue) {
 
 async function remove(collection, data) {
   return new Promise((resolve, reject) => {
-    collection.deleteOne(data, function (err, result) {
-        if (err) {
-          reject(err);
-        }
-        resolve(result);
-      });
+    collection.deleteOne(data || {}, function (err, result) {
+      if (err) {
+        reject(err);
+      }
+      resolve(result);
+    });
   })
 }
 
