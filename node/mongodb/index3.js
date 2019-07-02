@@ -54,11 +54,11 @@ async function main() {
 }
 
 main();
-// remove: 7.068ms
-// find0: 250.888ms
-// insert: 427.607ms
-// update: 38.330ms
-// find: 336.604ms
+// remove: 7.872ms remove: 605.673ms
+// find0: 6.923ms
+// insert: 518.616ms
+// update: 15.957ms
+// find: 151.676ms
 
 async function getClient() {
   return new Promise((resolve, reject) => {
@@ -107,7 +107,7 @@ async function update(collection, oldValue, newValue) {
 
 async function remove(collection, data) {
   return new Promise((resolve, reject) => {
-    collection.deleteOne(data || {}, function (err, result) {
+    collection.deleteMany(data || {}, function (err, result) {
       if (err) {
         reject(err);
       }
