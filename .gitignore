@@ -5,3 +5,5 @@ RemoteSystemsTempFiles/
 .vscode
 .idea
 *.win
+*/**.zip
+*/**.rar
