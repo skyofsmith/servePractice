@@ -1,6 +1,7 @@
 const Koa = require('koa');
+const Router = require('koa-router');
 const app = new Koa();
-
+const router = new Router();
 // logger
 
 app.use(async (ctx, next) => {
@@ -18,15 +19,15 @@ app.use(async (ctx, next) => {
   ctx.set('X-Response-Time', `${ms}ms`);
 });
 
-// app.use(async ctx => {
-//   if (ctx.request.url === '/a') {
-//     ctx.response.status(200)
-//   }
-// })
-// response
-
-app.use(async ctx => {
-  ctx.body = 'Hello World';
+router.get('/', (ctx, next) => {
+  ctx.body = 'get /'
 });
+router.post('/p', (ctx, next) => {
+  ctx.body = {"res": "OK"}
+});
+
+app.use(router.routes())
+  .use(router.allowedMethods());
+
 
 app.listen(3000);
