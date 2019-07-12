@@ -1,6 +1,9 @@
+const path = require('path');
 const Koa = require('koa');
 const Router = require('koa-router');
 const static = require('koa-static');
+const views = require('koa-views');
+const render = require('koa-views-render');
 const app = new Koa();
 const router = new Router();
 // logger
@@ -12,7 +15,6 @@ app.use(async (ctx, next) => {
 });
 
 // x-response-time
-
 app.use(async (ctx, next) => {
   const start = Date.now();
   await next();
@@ -20,9 +22,17 @@ app.use(async (ctx, next) => {
   ctx.set('X-Response-Time', `${ms}ms`);
 });
 
+app.use(views(path.join(__dirname, 'views'), {
+  extension: 'ejs'
+}));
+
 app.use(static(
   path.join(__dirname, 'static')
 ));
+
+app.use(render('index', {
+  title: 'Home Page'
+}));
 
 router.get('/', (ctx, next) => {
   ctx.body = 'get /'
