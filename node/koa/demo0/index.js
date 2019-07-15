@@ -24,7 +24,7 @@ app.use(async (ctx, next) => {
 
 app.use(views(path.join(__dirname, 'views'), {
   map: {
-    html: 'underscore'
+    html: 'lodash'
   }
 }));
 
