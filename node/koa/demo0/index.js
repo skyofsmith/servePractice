@@ -23,7 +23,9 @@ app.use(async (ctx, next) => {
 });
 
 app.use(views(path.join(__dirname, 'views'), {
-  extension: 'ejs'
+  map: {
+    html: 'underscore'
+  }
 }));
 
 app.use(static(
@@ -31,7 +33,8 @@ app.use(static(
 ));
 
 app.use(render('index', {
-  title: 'Home Page'
+  title: 'Home Page',
+  content: 'this is content!'
 }));
 
 router.get('/', (ctx, next) => {
