@@ -29,3 +29,18 @@
 - 浮点型： float32/float64
     - 长度： 4/8字节
     - 小数位： 精确到7/15小数位
+    
+    
+- 复数： complex64/complex128
+    - 长度： 8/16字节
+    
+- 足够保存指针的32位或64位整数型： uintptr
+
+- 其他值类型：
+    - array
+    - struct
+    - string
+    
+- 接口类型： interface
+
+- 函数类型： func
