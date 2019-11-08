@@ -44,3 +44,10 @@
 - 接口类型： interface
 
 - 函数类型： func
+
+## 类型零值
+
+值类型默认为0，bool为false，string为空字符串
+
+
+## 类型别名
