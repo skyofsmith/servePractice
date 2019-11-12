@@ -58,4 +58,13 @@ func test() {
     fmt.Println(e)
     fmt.Println(f)
     fmt.Println(g)
+    transform()
+}
+
+func transform() {
+    var a float32 = 100.1
+    fmt.Println(a)
+    b := int(a)
+    //c := bool(a)  // error: cannot convert a (type float32) to type bool
+    fmt.Println(b)
 }
