@@ -1,6 +1,9 @@
 package main
 
-import ("fmt")
+import (
+    "fmt"
+    "strconv"
+    )
 
 type (
     byte uint8
@@ -10,7 +13,23 @@ type (
 
 
 func main () {
+    var_var()
     test()
+    transform()
+    testStringConvert()
+}
+func testStringConvert()  {
+    var a int = 65
+    b := string(a)
+    fmt.Println(b)  // "A"
+    c := strconv.Itoa(a)
+    fmt.Println(c)  // "65"
+    d, _ := strconv.Atoi(c)
+    fmt.Println(d)
+    fmt.Println(e)
+
+}
+func var_var()  {
     var (
         aaa = "hello"
         sss, bbb = 1, 2
@@ -58,7 +77,6 @@ func test() {
     fmt.Println(e)
     fmt.Println(f)
     fmt.Println(g)
-    transform()
 }
 
 func transform() {
