@@ -88,5 +88,23 @@ i, m, n, o := 13, 14, 15, 16
 - 类型转换格式：
     - `<ValueA> [:]= <TypeOfValueA>(<ValueB>)`
 
+```
+package main
 
+import std "fmt"
+
+const PI = 3.14
+
+var name = "gopher"
+
+type newType int
+
+type gopher struct{}
+
+type golang interface{}
+
+func main() {
+  std.Println("Hello world! 你好，世界！")
+}
+```
     

@@ -27,7 +27,6 @@ func testStringConvert()  {
     d, _ := strconv.Atoi(c)
     fmt.Println(d)
     fmt.Println(e)
-
 }
 func var_var()  {
     var (
