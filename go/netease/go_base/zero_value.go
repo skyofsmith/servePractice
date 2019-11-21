@@ -16,6 +16,8 @@ func main() {
 	test()
 	transform()
 	testStringConvert()
+	testConst()
+	testEnum()
 }
 
 func testStringConvert() {
@@ -26,7 +28,6 @@ func testStringConvert() {
 	fmt.Println(c) // "65"
 	d, _ := strconv.Atoi(c)
 	fmt.Println(d)
-	fmt.Println(e)
 }
 func var_var() {
 	var (
@@ -86,21 +87,33 @@ func transform() {
 	fmt.Println(b)
 }
 
-
 func testConst() {
 	const a int = 1
 	const b = 'A'
 	const (
 		c = 1
-		d = a + 1
-		e = a + 2
 	)
 	const f, g = 1, 2
 	fmt.Println(a)
 	fmt.Println(b)
 	fmt.Println(c)
-	fmt.Println(d)
-	fmt.Println(e)
 	fmt.Println(f)
 	fmt.Println(g)
+}
+
+func testEnum()  {
+	const (
+		a = 'A'
+		b = iota
+		c = 'B'
+		d = iota
+	)
+	const (
+		e = iota
+	)
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(c)
+	fmt.Println(d)
+	fmt.Println(e)
 }
