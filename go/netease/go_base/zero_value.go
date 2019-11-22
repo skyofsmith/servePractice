@@ -117,3 +117,4 @@ func testEnum()  {
 	fmt.Println(d)
 	fmt.Println(e)
 }
+
