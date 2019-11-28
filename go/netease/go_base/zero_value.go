@@ -18,6 +18,7 @@ func main() {
 	testStringConvert()
 	testConst()
 	testEnum()
+	testSymbol()
 }
 
 func testStringConvert() {
@@ -118,3 +119,9 @@ func testEnum()  {
 	fmt.Println(e)
 }
 
+func testSymbol() {
+	fmt.Println(^2)	// ^2 = -3
+	fmt.Println(1^2)	// 1^2 = 3
+	fmt.Println(!false)
+	fmt.Println(!true)
+}
