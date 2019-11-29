@@ -137,4 +137,16 @@ func testSymbol() {
 	fmt.Println(6 | 11)
 	fmt.Println(6 ^ 11)
 	fmt.Println(6 &^ 11)
+	const (
+		B float64 = 1 << (iota * 10)
+		KB
+		MB
+		GB
+		TB
+	)
+	fmt.Println(B)
+	fmt.Println(KB)
+	fmt.Println(MB)
+	fmt.Println(GB)
+	fmt.Println(TB)
 }
