@@ -122,6 +122,19 @@ func testEnum()  {
 func testSymbol() {
 	fmt.Println(^2)	// ^2 = -3
 	fmt.Println(1^2)	// 1^2 = 3
-	fmt.Println(!false)
-	fmt.Println(!true)
+	fmt.Println(!false)	// !false = true
+	fmt.Println(!true)	// !true = false
+	/*
+	6 : 0110
+	10: 1011
+	--------
+	&   0010
+	|   1111
+	^   1101
+	&^  0100
+	 */
+	fmt.Println(6 & 11)
+	fmt.Println(6 | 11)
+	fmt.Println(6 ^ 11)
+	fmt.Println(6 &^ 11)
 }
