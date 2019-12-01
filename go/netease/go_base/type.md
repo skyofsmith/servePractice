@@ -135,6 +135,15 @@ func main() {
 - &&
 - ||
 
+```
+a++
+a--
+++a //error
+--a //error
+b := a++ //error
+b := a-- //error
+
+```
 
 
 

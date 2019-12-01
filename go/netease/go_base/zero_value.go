@@ -149,4 +149,12 @@ func testSymbol() {
 	fmt.Println(MB)
 	fmt.Println(GB)
 	fmt.Println(TB)
+	a := 100
+	var p *int = &a
+	fmt.Println(p)
+	fmt.Println(*p)
+	if a := 1; a > 0 {
+		fmt.Println(a)
+	}
+	fmt.Println(a)
 }
