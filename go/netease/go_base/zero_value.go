@@ -19,6 +19,7 @@ func main() {
 	testConst()
 	testEnum()
 	testSymbol()
+	testControl()
 }
 
 func testStringConvert() {
@@ -149,6 +150,9 @@ func testSymbol() {
 	fmt.Println(MB)
 	fmt.Println(GB)
 	fmt.Println(TB)
+}
+
+func testControl () {
 	a := 100
 	var p *int = &a
 	fmt.Println(p)
@@ -157,4 +161,22 @@ func testSymbol() {
 		fmt.Println(a)
 	}
 	fmt.Println(a)
+	b := 1
+	for {
+		b++
+		if	b > 3 {
+			break
+		}
+		fmt.Println(b)
+	}
+	fmt.Println("over")
+	for b > 0 {
+		b--
+		fmt.Println(b)
+	}
+	fmt.Println("over")
+	for c := 0; c < 5; c++ {
+		fmt.Println(c)
+	}
+	fmt.Println("over")
 }
