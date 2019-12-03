@@ -179,4 +179,31 @@ func testControl () {
 		fmt.Println(c)
 	}
 	fmt.Println("over")
+	c := 1
+	switch c {
+	case 0:
+		fmt.Println("a = 0")
+	case 1:
+		fmt.Println("a = 1")
+	default:
+		fmt.Println("None")
+	}
+	switch {
+	case a >= 0:
+		fmt.Println("a >= 0")
+		fallthrough
+	case a >= 1:
+		fmt.Println("a >= 1")
+	default:
+		fmt.Println("None")
+	}
+	switch a := 3; {
+	case a >= 0:
+		fmt.Println("a >= 0")
+		fallthrough
+	case a >= 1:
+		fmt.Println("a >= 1")
+	default:
+		fmt.Println("None")
+	}
 }
