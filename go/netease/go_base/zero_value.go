@@ -103,7 +103,7 @@ func testConst() {
 	fmt.Println(g)
 }
 
-func testEnum()  {
+func testEnum() {
 	const (
 		a = 'A'
 		b = iota
@@ -121,19 +121,19 @@ func testEnum()  {
 }
 
 func testSymbol() {
-	fmt.Println(^2)	// ^2 = -3
-	fmt.Println(1^2)	// 1^2 = 3
-	fmt.Println(!false)	// !false = true
-	fmt.Println(!true)	// !true = false
+	fmt.Println(^2)     // ^2 = -3
+	fmt.Println(1 ^ 2)  // 1^2 = 3
+	fmt.Println(!false) // !false = true
+	fmt.Println(!true)  // !true = false
 	/*
-	6 : 0110
-	10: 1011
-	--------
-	&   0010
-	|   1111
-	^   1101
-	&^  0100
-	 */
+		6 : 0110
+		10: 1011
+		--------
+		&   0010
+		|   1111
+		^   1101
+		&^  0100
+	*/
 	fmt.Println(6 & 11)
 	fmt.Println(6 | 11)
 	fmt.Println(6 ^ 11)
@@ -152,7 +152,7 @@ func testSymbol() {
 	fmt.Println(TB)
 }
 
-func testControl () {
+func testControl() {
 	a := 100
 	var p *int = &a
 	fmt.Println(p)
@@ -164,7 +164,7 @@ func testControl () {
 	b := 1
 	for {
 		b++
-		if	b > 3 {
+		if b > 3 {
 			break
 		}
 		fmt.Println(b)
@@ -206,4 +206,25 @@ func testControl () {
 	default:
 		fmt.Println("None")
 	}
+	time := 0
+LABEL1:
+	for {
+	LABEL2:
+		time++
+		fmt.Println( time)
+		if time % 2 == 1 {
+			fmt.Println( ".")
+			continue LABEL1
+		}
+		if time > 10 {
+			break LABEL1
+		}
+		for i := 0; i < 10; i++ {
+			if i > 3 {
+				goto LABEL2
+			}
+		}
+	}
+	fmt.Println("OK")
+	fmt.Println(time)
 }
