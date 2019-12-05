@@ -169,4 +169,33 @@ for 变量 := 初始值; 变量 < 最大值; 变量++ {
     
 }
 ```
-   
+
+### switch
+
+-
+```
+switch 变量 {
+case 常量值1:
+
+case 常量值2:
+
+default:
+
+}
+```
+-
+```
+switch {
+case 条件1:
+    fallthrough
+case 条件2:
+default:
+}
+```
+
+- continue 跳过这次循环, 进行下次循环
+
+- break 跳出循环
+
+- goto 跳到标签处
+
