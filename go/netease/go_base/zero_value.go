@@ -12,7 +12,7 @@ type (
 )
 
 func main() {
-	var_var()
+	varVar()
 	test()
 	transform()
 	testStringConvert()
@@ -20,6 +20,7 @@ func main() {
 	testEnum()
 	testSymbol()
 	testControl()
+	testArray()
 }
 
 func testStringConvert() {
@@ -31,7 +32,7 @@ func testStringConvert() {
 	d, _ := strconv.Atoi(c)
 	fmt.Println(d)
 }
-func var_var() {
+func varVar() {
 	var (
 		aaa      = "hello"
 		sss, bbb = 1, 2
@@ -227,4 +228,39 @@ LABEL1:
 	}
 	fmt.Println("OK")
 	fmt.Println(time)
+}
+
+func testArray() {
+	var a [2]int
+	var b [2]int
+	b = a
+	fmt.Println(b)
+	c := [2] int {1}
+	fmt.Println(c)
+	d := [...]int {1,2,3,4,5}
+	fmt.Println(d)
+	e := [...]int {0:1, 1: 2, 2:3}
+	fmt.Println(e)
+	f := [...]int {19: 3}
+	fmt.Println(f)
+	g := [2]int {1, 2}
+	h := [2]int {1, 2}
+	i := [2]int {2, 1}
+	//j := [3]int {2, 1, 3}
+	fmt.Println(g == h)
+	fmt.Println(h == i)
+	//fmt.Println(j == i)	// error
+	k := new([10]int)
+	k[1] = 2
+	fmt.Println(k)
+	l := [10]int {}
+	l[1] = 2
+	fmt.Println(l)
+	fmt.Println(l == *k)
+	fmt.Println(&l == k)
+	m := [2][3]int {
+		{1,1,1},
+		{2,2,2},
+	}
+	fmt.Println(m)
 }
