@@ -21,6 +21,8 @@ func main() {
 	testSymbol()
 	testControl()
 	testArray()
+	testS()
+	testSlice()
 }
 
 func testStringConvert() {
@@ -263,4 +265,16 @@ func testArray() {
 		{2,2,2},
 	}
 	fmt.Println(m)
+}
+
+func testS() {
+	for i := 0; i < 3; i++ {
+		v := 1
+		fmt.Println(&v)
+	}
+}
+
+func testSlice() {
+	var s1 []int
+	fmt.Println(s1)
 }
