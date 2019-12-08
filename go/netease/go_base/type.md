@@ -203,3 +203,9 @@ default:
 ## array
 
 
+## slice
+
+```
+slice := make(类型, 长度[,容量 = 长度])
+s1 := make([]int, 3, 10)
+```
