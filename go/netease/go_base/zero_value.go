@@ -287,4 +287,14 @@ func testSlice() {
 	fmt.Println(s4)
 	s5 := make([]int, 3, 10)
 	fmt.Println(s5, len(s5), cap(s5))
+	b := []byte{'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k'}
+	sb := b[3:5]
+	sc := sb[3:5]
+	fmt.Println(sb, sc)
+	c := make([]int, 3, 6)
+	fmt.Printf("%p\n", c)
+	c = append(c, 1, 2, 3)
+	fmt.Printf("%p\n", c)
+	c = append(c, 1, 2, 3)
+	fmt.Printf("%p\n", c)
 }
