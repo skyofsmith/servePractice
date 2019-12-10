@@ -23,6 +23,7 @@ func main() {
 	testArray()
 	testS()
 	testSlice()
+	testMap()
 }
 
 func testStringConvert() {
@@ -297,4 +298,13 @@ func testSlice() {
 	fmt.Printf("%p\n", c)
 	c = append(c, 1, 2, 3)
 	fmt.Printf("%p\n", c)
+}
+
+func testMap() {
+	var m, n map[int]string
+	m = map[int]string{}
+	n = make(map[int]string)
+	o := make(map[int]string)
+	m[1] = "ok"
+	fmt.Println(m, n, o, m[1], m[2])
 }
