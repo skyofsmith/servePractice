@@ -209,3 +209,11 @@ default:
 slice := make(类型, 长度[,容量 = 长度])
 s1 := make([]int, 3, 10)
 ```
+
+
+## map
+
+```
+map := map[键类型]值类型
+map := make(map[int]string)
+```
