@@ -24,6 +24,7 @@ func main() {
 	testS()
 	testSlice()
 	testMap()
+	testForRange()
 }
 
 func testStringConvert() {
@@ -215,9 +216,9 @@ LABEL1:
 	for {
 	LABEL2:
 		time++
-		fmt.Println( time)
-		if time % 2 == 1 {
-			fmt.Println( ".")
+		fmt.Println(time)
+		if time%2 == 1 {
+			fmt.Println(".")
 			continue LABEL1
 		}
 		if time > 10 {
@@ -238,17 +239,17 @@ func testArray() {
 	var b [2]int
 	b = a
 	fmt.Println(b)
-	c := [2] int {1}
+	c := [2] int{1}
 	fmt.Println(c)
-	d := [...]int {1,2,3,4,5}
+	d := [...]int{1, 2, 3, 4, 5}
 	fmt.Println(d)
-	e := [...]int {0:1, 1: 2, 2:3}
+	e := [...]int{0: 1, 1: 2, 2: 3}
 	fmt.Println(e)
-	f := [...]int {19: 3}
+	f := [...]int{19: 3}
 	fmt.Println(f)
-	g := [2]int {1, 2}
-	h := [2]int {1, 2}
-	i := [2]int {2, 1}
+	g := [2]int{1, 2}
+	h := [2]int{1, 2}
+	i := [2]int{2, 1}
 	//j := [3]int {2, 1, 3}
 	fmt.Println(g == h)
 	fmt.Println(h == i)
@@ -256,14 +257,14 @@ func testArray() {
 	k := new([10]int)
 	k[1] = 2
 	fmt.Println(k)
-	l := [10]int {}
+	l := [10]int{}
 	l[1] = 2
 	fmt.Println(l)
 	fmt.Println(l == *k)
 	fmt.Println(&l == k)
-	m := [2][3]int {
-		{1,1,1},
-		{2,2,2},
+	m := [2][3]int{
+		{1, 1, 1},
+		{2, 2, 2},
 	}
 	fmt.Println(m)
 }
@@ -278,7 +279,7 @@ func testS() {
 func testSlice() {
 	var s1 []int
 	fmt.Println(s1)
-	a := [10]int{0,1,2,3,4,5,6,7,8,9}
+	a := [10]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	fmt.Println(a)
 	s2 := a[5:10]
 	fmt.Println(s2)
@@ -307,4 +308,26 @@ func testMap() {
 	o := make(map[int]string)
 	m[1] = "ok"
 	fmt.Println(m, n, o, m[1], m[2])
+	var a map[int]map[int]string
+	a = make(map[int]map[int]string)
+	a[1] = make(map[int]string)
+	a[1][1] = "OK"
+	b := a[1][1]
+	c, d := a[2][1]
+	if !d {
+		a[2] = make(map[int]string)
+	}
+	a[2][1] = "Good"
+	e := a[2][1]
+	fmt.Println(b, c, d, e)
+}
+
+func testForRange() {
+	s := make([]map[int]string, 5)
+	for i := range s {
+		s[i] = make(map[int]string, 1)
+		s[i][1] = "OK"
+		fmt.Println(i, s[i][1])
+	}
+	fmt.Println(s)
 }
