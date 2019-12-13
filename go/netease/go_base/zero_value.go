@@ -25,6 +25,7 @@ func main() {
 	testSlice()
 	testMap()
 	testForRange()
+	testFunc()
 }
 
 func testStringConvert() {
@@ -330,4 +331,11 @@ func testForRange() {
 		fmt.Println(i, s[i][1])
 	}
 	fmt.Println(s)
+}
+
+func testFunc() {
+	A(1, "a", "b")
+}
+func A(a int, b ...string) (ra int, rb string) {
+	return a, ""
 }
