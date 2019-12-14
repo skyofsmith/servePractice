@@ -335,7 +335,23 @@ func testForRange() {
 
 func testFunc() {
 	A(1, "a", "b")
+	arr := make([]int, 5)
+	changeArrayPassByValue(arr)
+	fmt.Println(arr)
+	changeArrayPassByRef(&arr)
+	fmt.Println(arr)
 }
 func A(a int, b ...string) (ra int, rb string) {
 	return a, ""
+}
+func changeArrayPassByValue(arr []int) {
+	arr[0] = 1
+	arr[1] = 2
+	arr[2] = 3
+}
+func changeArrayPassByRef(ar *[]int) {
+	arr := *ar
+	arr[0] = -1
+	arr[1] = -2
+	arr[2] = -3
 }
