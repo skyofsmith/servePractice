@@ -26,6 +26,7 @@ func main() {
 	testMap()
 	testForRange()
 	testFunc()
+	testStruct()
 }
 
 func testStringConvert() {
@@ -354,4 +355,94 @@ func changeArrayPassByRef(ar *[]int) {
 	arr[0] = -1
 	arr[1] = -2
 	arr[2] = -3
+}
+type person struct {
+	Name string
+	Age int
+}
+type employee struct {
+	Name string
+	Age int
+	Contact struct{
+		Phone, City string
+	}
+}
+type man struct {
+	string
+	int
+}
+func testStruct() {
+	a := person{}
+	a.Name = "sam"
+	a.Age = 29
+	b := person{
+		Name: "smith",
+		Age: 28,
+	}
+	fmt.Println(a, b)
+	A := func(p person) {
+		p.Age = 200
+		fmt.Println("A", p)
+	}
+	A(a)
+	fmt.Println(a)
+	B := func(p *person) {
+		p.Age = 2000
+		fmt.Println("B", p)
+	}
+	B(&b)
+	fmt.Println(b)
+	c := &struct {
+		Name string
+		Age int
+	}{
+		Name: "zarkas",
+		Age: 40,
+	}
+	fmt.Println(c)
+	d := employee{}
+	fmt.Println(d)
+	d.Name = "stu"
+	d.Age = 1
+	d.Contact.City = "Xi,An"
+	d.Contact.Phone = "123"
+	fmt.Println(d)
+	e := man{"s", 22}
+	//f := man{33, "s"}	// error
+	fmt.Println(e)
+	var f person
+	f = a
+	fmt.Println(f, f == a, &f == &a)
+
+	type human struct {
+		Sex int
+	}
+
+	type teacher struct {
+		human
+		Name string
+		Age int
+	}
+
+	type student struct {
+		human
+		Name string
+		Age int
+	}
+	t := teacher{
+		Name: "t",
+		Age: 33,
+		human: human{
+			Sex: 0,
+		},
+	}
+	s := student{
+		human: human{
+			Sex: 0,
+		},
+		Name: "t",
+		Age: 13,
+	}
+	t.Sex = 1
+	fmt.Println(t, s)
 }
