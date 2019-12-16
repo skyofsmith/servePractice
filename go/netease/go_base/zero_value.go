@@ -27,6 +27,7 @@ func main() {
 	testForRange()
 	testFunc()
 	testStruct()
+	testMethod()
 }
 
 func testStringConvert() {
@@ -38,6 +39,7 @@ func testStringConvert() {
 	d, _ := strconv.Atoi(c)
 	fmt.Println(d)
 }
+
 func varVar() {
 	var (
 		aaa      = "hello"
@@ -342,42 +344,46 @@ func testFunc() {
 	changeArrayPassByRef(&arr)
 	fmt.Println(arr)
 }
+
 func A(a int, b ...string) (ra int, rb string) {
 	return a, ""
 }
+
 func changeArrayPassByValue(arr []int) {
 	arr[0] = 1
 	arr[1] = 2
 	arr[2] = 3
 }
+
 func changeArrayPassByRef(ar *[]int) {
 	arr := *ar
 	arr[0] = -1
 	arr[1] = -2
 	arr[2] = -3
 }
-type person struct {
-	Name string
-	Age int
-}
-type employee struct {
-	Name string
-	Age int
-	Contact struct{
-		Phone, City string
-	}
-}
-type man struct {
-	string
-	int
-}
+
 func testStruct() {
+	type person struct {
+		Name string
+		Age  int
+	}
+	type employee struct {
+		Name    string
+		Age     int
+		Contact struct {
+			Phone, City string
+		}
+	}
+	type man struct {
+		string
+		int
+	}
 	a := person{}
 	a.Name = "sam"
 	a.Age = 29
 	b := person{
 		Name: "smith",
-		Age: 28,
+		Age:  28,
 	}
 	fmt.Println(a, b)
 	A := func(p person) {
@@ -394,10 +400,10 @@ func testStruct() {
 	fmt.Println(b)
 	c := &struct {
 		Name string
-		Age int
+		Age  int
 	}{
 		Name: "zarkas",
-		Age: 40,
+		Age:  40,
 	}
 	fmt.Println(c)
 	d := employee{}
@@ -421,17 +427,17 @@ func testStruct() {
 	type teacher struct {
 		human
 		Name string
-		Age int
+		Age  int
 	}
 
 	type student struct {
 		human
 		Name string
-		Age int
+		Age  int
 	}
 	t := teacher{
 		Name: "t",
-		Age: 33,
+		Age:  33,
 		human: human{
 			Sex: 0,
 		},
@@ -441,8 +447,23 @@ func testStruct() {
 			Sex: 0,
 		},
 		Name: "t",
-		Age: 13,
+		Age:  13,
 	}
 	t.Sex = 1
+	s.human.Sex = 1
 	fmt.Println(t, s)
+}
+
+func testMethod() {
+	type AA struct {
+		Name string
+	}
+	type B struct {
+		Name string
+	}
+	a := AA{}
+	a.Print()
+	func (a AA) Print() {
+		fmt.Println("A", a.Name)
+	}
 }
