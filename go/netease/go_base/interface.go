@@ -32,10 +32,11 @@ func main() {
 	DisConnect(a)
 }
 
-func DisConnect(usb UBS) {
-	if pc, ok := usb.PhoneConnecter; ok {
-		fmt.Println("Disconnected.", pc.name)
-		return
+func DisConnect(usb USB) {
+	switch v := usb.(type) {
+	case PhoneConnecter:
+		fmt.Println("Disconnected.", v.name)
+	default:
+		fmt.Println("Unknown device.")
 	}
-	fmt.Println("Unknown device.")
 }
