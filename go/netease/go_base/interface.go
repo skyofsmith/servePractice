@@ -27,9 +27,11 @@ func (pc PhoneConnecter) Connect() {
 
 func main() {
 	//var a USB
-	a := PhoneConnecter{"PhoneConnecter"}
-	a.Connect()
-	DisConnect(a)
+	pc := PhoneConnecter{"PhoneConnecter"}
+	var a Connecter
+	//a.Connect()	// error
+	a.Name()
+	DisConnect(pc)
 }
 
 func DisConnect(usb USB) {
