@@ -47,6 +47,11 @@ func main() {
 	//var b USB
 	//b = USB(tv)
 	//b.Connect()
+
+	var q interface{}
+	var p *int = nil
+	q = p
+	fmt.Println(q == nil)
 }
 
 func DisConnect(usb USB) {
