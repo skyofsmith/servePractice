@@ -6,18 +6,26 @@ import (
 )
 
 type User struct {
-	Id		int
-	Name	string
-	Age		int
+	Id   int
+	Name string
+	Age  int
 }
 
-func (u User) Hello()  {
+func (u User) Hello() {
 	fmt.Println("hello world!")
 }
 
+type Manager struct {
+	User
+	title string
+}
+
 func main() {
-	u := User{1, "OK", 12}
-	Info(u)
+	//u := User{1, "OK", 12}
+	//Info(u)
+	m := Manager{User: User{1, "OK", 12}, title: "qwe"}
+	t := reflect.TypeOf(m)
+	fmt.Printf("%#v\n", t.FieldByIndex([]int{0, 0}))
 }
 
 func Info(o interface{}) {
