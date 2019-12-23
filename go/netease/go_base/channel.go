@@ -67,7 +67,7 @@ func main() {
 	close(c1)
 	close(c2)
 
-	<-o
+	fmt.Println(<-o)
 }
 
 func p() {
