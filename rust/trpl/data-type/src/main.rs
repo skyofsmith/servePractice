@@ -4,6 +4,39 @@ fn main() {
     test_operate();
     test_bool();
     test_char();
+
+    test_tuple();
+    test_array();
+}
+
+fn test_array() {
+    let a = [1, 2, 3, 4, 5];
+    println!("{}", a[0]);
+
+    let months = ["January", "February", "March", "April", "May", "June", "July",
+        "August", "September", "October", "November", "December"];
+    println!("{}", months[0]);
+
+    let a = [3; 5];
+    println!("{}", a[0]);
+}
+
+fn test_tuple() {
+    let tup = (500, 6.4, 1);
+
+    let (x, y, z) = tup;
+
+    println!("The value of y is: {}", y);
+
+    let x: (i32, f64, u8) = (500, 6.4, 1);
+
+    let five_hundred = x.0;
+
+    let six_point_four = x.1;
+
+    let one = x.2;
+
+    println!("five_hundred is {}, six_point_four is {}, one is {}", five_hundred, six_point_four, one);
 }
 
 fn test_char() {
