@@ -1,4 +1,9 @@
 fn main() {
+    test_before();
+    test_slices();
+}
+
+fn test_before() {
     let mut s = String::from("hello world");
 
     let word = first_word(&s); // word 的值为 5
@@ -21,4 +26,12 @@ fn first_word(s: &String) -> usize {
     }
 
     s.len()
+}
+
+fn test_slices() {
+    let s = String::from("hello world");
+
+    let hello = &s[0..5];
+    let world = &s[6..11];
+    println!("hello is {}, world is {}", hello, world);
 }
