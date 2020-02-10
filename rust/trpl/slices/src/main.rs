@@ -2,6 +2,7 @@ fn main() {
     test_before();
     test_slices();
     test_slices_word();
+    test_other_slices();
 }
 
 fn test_before() {
@@ -59,5 +60,15 @@ fn test_slices_word() {
         }
 
         &s[..]
+    }
+}
+
+fn test_other_slices() {
+
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    print!("slice is ");
+    for e in slice.iter() {
+        print!("{} ", e);
     }
 }
