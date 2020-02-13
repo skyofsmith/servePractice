@@ -1,10 +1,4 @@
 fn main() {
-    struct User {
-        username: String,
-        email: String,
-        sign_in_count: u64,
-        active: bool,
-    }
 
     let user1 = User {
         email: String::from("someone@example.com"),
@@ -30,4 +24,35 @@ fn main() {
 
     println!("user1.email is {}", user1.email);
 
+    let user2 = build_user(String::from("email2"), String::from("Sam"));
+    println!("user2.email is {}", user2.email);
+
+    let user3 = build_user_alias(String::from("email3"), String::from("Tom"));
+    println!("user3.email is {}", user3.email);
+
+}
+
+struct User {
+    username: String,
+    email: String,
+    sign_in_count: u64,
+    active: bool,
+}
+
+fn build_user(email: String, username: String) -> User {
+    User {
+        email: email,
+        username: username,
+        active: true,
+        sign_in_count: 1,
+    }
+}
+
+fn build_user_alias(email: String, username: String) -> User {
+    User {
+        email,
+        username,
+        active: true,
+        sign_in_count: 1,
+    }
 }
