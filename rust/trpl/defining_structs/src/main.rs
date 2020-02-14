@@ -30,6 +30,20 @@ fn main() {
     let user3 = build_user_alias(String::from("email3"), String::from("Tom"));
     println!("user3.email is {}", user3.email);
 
+    let user4 = User {
+        email: String::from("another4@example.com"),
+        username: String::from("anotherusername567"),
+        active: user1.active,
+        sign_in_count: user1.sign_in_count,
+    };
+    println!("user4.email is {}", user4.email);
+
+    let user5 = User {
+        email: String::from("another5@example.com"),
+        username: String::from("anotherusername567"),
+        ..user1
+    };
+    println!("user5.email is {}", user5.email);
 }
 
 struct User {
