@@ -1,9 +1,9 @@
 fn main() {
-    test_rebuild_by_turpl();
+    test_rebuild_by_tuple();
     test_rebuild_by_structs();
 }
 
-fn test_rebuild_by_turpl() {
+fn test_rebuild_by_tuple() {
 
     fn area(width: u32, height: u32) -> u32 {
         width * height
