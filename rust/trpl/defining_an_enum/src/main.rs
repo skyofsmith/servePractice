@@ -2,6 +2,7 @@ fn main() {
     test_define_enum();
     test_enum();
     test_enum2();
+    test_option();
 }
 
 fn test_define_enum () {
@@ -46,13 +47,35 @@ fn test_enum() {
 fn test_enum2() {
     #[derive(Debug)]
     enum IpAddr {
-        V4(String),
+        V4(u8, u8, u8, u8),
         V6(String),
     }
 
-    let home = IpAddr::V4(String::from("127.0.0.1"));
+    let home = IpAddr::V4(127, 0, 0, 1);
 
     let loopback = IpAddr::V6(String::from("::1"));
 
     println!("home is {:#?}, loopback is {:#?}", home, loopback);
+}
+
+fn test_option() {
+    #[derive(Debug)]
+    enum Option<T> {
+        Some(T),
+        None,
+    }
+
+    let some_number = Some(5);
+    let some_string = Some("a string");
+
+//    let absent_number: Option<i32> = None;
+    println!("some_number is {:#?}", some_number);
+    println!("some_string is {:#?}", some_string);
+
+    /*
+    let x: i8 = 5;
+    let y: Option<i8> = Some(5);
+
+    let sum = x + y;
+    */
 }
