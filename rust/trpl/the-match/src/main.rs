@@ -10,6 +10,16 @@ fn main() {
     let six = plus_one(five);
     let none = plus_one(None);
     println!("five is {:#?}, six is {:#?}, none is {:#?}", five, six, none);
+
+    let some_u8_value = 0u8;
+    match some_u8_value {
+        1 => println!("one"),
+        3 => println!("three"),
+        5 => println!("five"),
+        7 => println!("seven"),
+        _ => (),
+    }
+    println!("a_u8_value is {}", some_u8_value);
 }
 
 enum Coin {
