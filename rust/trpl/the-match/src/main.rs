@@ -1,4 +1,10 @@
 fn main() {
+
+    let c1 = Coin::Dime;
+
+    let n = value_in_cents(c1);
+    println!("value is {}", n);
+
     fn plus_one(x: Option<i32>) -> Option<i32> {
         match x {
             None => None,
@@ -11,7 +17,7 @@ fn main() {
     let none = plus_one(None);
     println!("five is {:#?}, six is {:#?}, none is {:#?}", five, six, none);
 
-    let some_u8_value = 0u8;
+    let some_u8_value = 3u8;
     match some_u8_value {
         1 => println!("one"),
         3 => println!("three"),
