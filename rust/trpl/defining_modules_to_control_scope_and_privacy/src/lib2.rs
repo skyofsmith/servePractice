@@ -8,6 +8,8 @@ use std::{cmp::Ordering, io};
 // use std::io::Write;
 use std::io::{self, Write};
 
+use std::collections::*;
+
 fn function1() -> Result {
     // --snip--
 }
