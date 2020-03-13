@@ -1,6 +1,7 @@
 fn main() {
     test_vector();
     test_read_vector();
+    test_iterate_vector();
 }
 
 fn test_vector () {
@@ -26,5 +27,19 @@ fn test_read_vector() {
     match v.get(2) {
         Some(third) => println!("The third element is {}", third),
         None => println!("There is no third element."),
+    }
+}
+
+fn test_iterate_vector() {
+    let v = vec![100, 32, 57];
+    for i in &v {
+        println!("{}", i);
+    }
+    let mut v = vec![100, 32, 57];
+    for i in &mut v {
+        *i += 50;
+    }
+    for i in &v {
+        println!("{}", i);
     }
 }
