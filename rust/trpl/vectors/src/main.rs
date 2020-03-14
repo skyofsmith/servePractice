@@ -2,6 +2,7 @@ fn main() {
     test_vector();
     test_read_vector();
     test_iterate_vector();
+    test_use_enum();
 }
 
 fn test_vector () {
@@ -42,4 +43,18 @@ fn test_iterate_vector() {
     for i in &v {
         println!("{}", i);
     }
+}
+
+fn test_use_enum() {
+    enum SpreadsheetCell {
+        Int(i32),
+        Float(f64),
+        Text(String),
+    }
+
+    let row = vec![
+        SpreadsheetCell::Int(3),
+        SpreadsheetCell::Text(String::from("blue")),
+        SpreadsheetCell::Float(10.12),
+    ];
 }
