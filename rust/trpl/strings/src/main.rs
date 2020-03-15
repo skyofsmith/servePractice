@@ -1,5 +1,8 @@
 fn main() {
     test_string();
+    test_update();
+    test_operator_add();
+    test_iterate_string();
 }
 
 fn test_string() {
@@ -35,4 +38,58 @@ fn test_string() {
     println!("hello9 is \"{}\"", hello9);
     println!("hello10 is \"{}\"", hello10);
     println!("hello11 is \"{}\"", hello11);
+}
+
+fn test_update() {
+    let mut s = String::from("foo");
+    s.push_str("bar");
+    println!("s now is {}", s);
+
+    let mut s1 = String::from("foo");
+    let s2 = "bar";
+    s1.push_str(s2);
+    println!("s2 is {}", s2);
+
+    let mut s = String::from("lo");
+    s.push('l');
+    println!("s is {}", s);
+}
+
+fn test_operator_add() {
+    let s1 = String::from("Hello, ");
+    let s2 = String::from("world!");
+    let s3 = s1 + &s2;
+//    println!("s1 is {}", s1);
+    println!("s2 is {}", s2);
+    println!("s3 is {}", s3);
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = s1 + "-" + &s2 + "-" + &s3;
+    println!("s is {}", s);
+
+    let s1 = String::from("tic");
+    let s2 = String::from("tac");
+    let s3 = String::from("toe");
+
+    let s = format!("{}-{}-{}", s1, s2, s3);
+    println!("s is {}", s);
+}
+
+fn test_iterate_string() {
+    let s1 = "abc";
+    println!("s1.len = {}", s1.len());
+    for c in s1.chars() {
+        println!("{}", c);
+    }
+    let s2 = "你好，世界！";
+    println!("s2.len = {}", s2.len());
+    for c in s2.chars() {
+        println!("{}", c);
+    }
+    for c in s2.bytes() {
+        println!("{}", c);
+    }
 }
