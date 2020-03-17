@@ -3,6 +3,7 @@ use std::collections::HashMap;
 fn main() {
     test_new_hash_map();
     test_auth();
+    test_get_value();
 }
 
 fn test_new_hash_map() {
@@ -28,4 +29,19 @@ fn test_auth() {
 
 //    println!("field_name is {}, field_value is {}", field_name, field_value);
     println!("map is {:#?}", map);
+}
+
+fn test_get_value() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Yellow"), 50);
+
+    let team_name = String::from("Blue");
+    let score = scores.get(&team_name);
+    println!("score is {:#?}", score);
+
+    for (key, value) in &scores {
+        println!("{}: {}", key, value);
+    }
 }
