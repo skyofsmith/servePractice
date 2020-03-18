@@ -4,6 +4,7 @@ fn main() {
     test_new_hash_map();
     test_auth();
     test_get_value();
+    test_update_value();
 }
 
 fn test_new_hash_map() {
@@ -44,4 +45,23 @@ fn test_get_value() {
     for (key, value) in &scores {
         println!("{}: {}", key, value);
     }
+}
+
+fn test_update_value() {
+    let mut scores = HashMap::new();
+
+    scores.insert(String::from("Blue"), 10);
+    scores.insert(String::from("Blue"), 25);
+
+    println!("{:?}", scores);
+
+    let mut scores = HashMap::new();
+    scores.insert(String::from("Blue"), 10);
+
+    let e = scores.entry(String::from("Yellow"));
+    println!("e is {:?}", e);
+    e.or_insert(50);
+    scores.entry(String::from("Blue")).or_insert(50);
+
+    println!("{:?}", scores);
 }
