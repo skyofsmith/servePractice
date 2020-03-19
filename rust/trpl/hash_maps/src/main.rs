@@ -64,4 +64,19 @@ fn test_update_value() {
     scores.entry(String::from("Blue")).or_insert(50);
 
     println!("{:?}", scores);
+
+    let text = "hello world wonderful world";
+
+    let mut map = HashMap::new();
+
+    let words = text.split_whitespace();
+    println!("words is {:?}", words);
+
+    for word in words {
+        println!("word is {:?}", word);
+        let count = map.entry(word).or_insert(0);
+        *count += 1;
+    }
+
+    println!("map is : {:?}", map);
 }
