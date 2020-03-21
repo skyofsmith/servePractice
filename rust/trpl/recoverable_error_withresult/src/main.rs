@@ -13,4 +13,9 @@ fn main() {
     });
 
     println!("f is {:#?}", f);
+
+
+    let f = File::open("hello.txt").expect("Failed to open hello.txt");
+
+    println!("f is {:#?}", f);
 }
