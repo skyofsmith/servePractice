@@ -1,4 +1,5 @@
 use std::io;
+use std::fs;
 use std::io::Read;
 use std::fs::File;
 use std::io::ErrorKind;
@@ -55,3 +56,6 @@ fn read_username_from_file3() -> Result<String, io::Error> {
     Ok(s)
 }
 
+fn read_username_from_file4() -> Result<String, io::Error> {
+    fs::read_to_string("hello.txt")
+}
