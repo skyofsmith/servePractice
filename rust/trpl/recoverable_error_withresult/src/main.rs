@@ -3,6 +3,7 @@ use std::fs;
 use std::io::Read;
 use std::fs::File;
 use std::io::ErrorKind;
+use std::error::Error;
 
 fn main() {
     let f = File::open("hello.txt").unwrap_or_else(|error| {
@@ -21,6 +22,7 @@ fn main() {
     let f = File::open("hello.txt").expect("Failed to open hello.txt");
 
     println!("f is {:#?}", f);
+
 }
 
 
@@ -58,4 +60,11 @@ fn read_username_from_file3() -> Result<String, io::Error> {
 
 fn read_username_from_file4() -> Result<String, io::Error> {
     fs::read_to_string("hello.txt")
+}
+
+fn read_box() -> Result<(), Box<dyn Error>> {
+
+    let f = File::open("hello.txt")?;
+
+    Ok(())
 }
