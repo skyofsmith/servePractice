@@ -3,6 +3,7 @@ node_modules/
 .recommenders/
 RemoteSystemsTempFiles/
 .vscode
+.vs
 .idea
 *.win
 */**.zip
