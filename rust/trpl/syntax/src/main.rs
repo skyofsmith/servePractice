@@ -2,6 +2,8 @@ fn main() {
     test_func();
     test_struct();
     test_method();
+    test_method2();
+    test_method3();
 }
 
 fn largest_i32(list: &[i32]) -> i32 {
@@ -40,13 +42,13 @@ fn test_func() {
     println!("The largest char is {}", result);
 }
 
-#[derive(Debug)]
-struct Point<T> {
-    x: T,
-    y: T,
-}
 
 fn test_struct() {
+    #[derive(Debug)]
+    struct Point<T> {
+        x: T,
+        y: T,
+    }
     let integer = Point { x: 5, y: 10 };
     let float = Point { x: 1.0, y: 4.0 };
     println!("integer is {:#?}, float is {:#?}", integer, float);
@@ -64,14 +66,59 @@ fn test_struct() {
 //     Err(E),
 // }
 
-impl<T> Point<T> {
-    fn x(&self) -> &T {
-        &self.x
-    }
-}
-
 fn test_method() {
+    #[derive(Debug)]
+    struct Point<T> {
+        x: T,
+        y: T,
+    }
+    impl<T> Point<T> {
+        fn x(&self) -> &T {
+            &self.x
+        }
+    }
+
     let p = Point { x: 5, y: 10 };
 
     println!("p.x = {}", p.x());
+}
+
+fn test_method2() {
+    struct Point<T> {
+        x: T,
+        y: T,
+    }
+    impl Point<f32> {
+        fn distance_from_origin(&self) -> f32 {
+            (self.x.powi(2) + self.y.powi(2)).sqrt()
+        }
+    }
+    let p = Point {
+        x: 3.0,
+        y: 4.0
+    };
+    println!("p.distance_from_origin = {}", p.distance_from_origin());
+
+}
+
+fn test_method3() {
+    struct Point<T, U> {
+        x: T,
+        y: U,
+    }
+
+    impl<T, U> Point<T, U> {
+        fn mixup<V, W>(self, other: Point<V, W>) -> Point<T, W> {
+            Point {
+                x: self.x,
+                y: other.y,
+            }
+        }
+    }
+    let p1 = Point { x: 5, y: 10.4 };
+    let p2 = Point { x: "Hello", y: 'c' };
+
+    let p3 = p1.mixup(p2);
+
+    println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
 }
