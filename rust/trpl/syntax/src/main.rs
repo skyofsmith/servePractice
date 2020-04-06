@@ -4,6 +4,7 @@ fn main() {
     test_method();
     test_method2();
     test_method3();
+    test_();
 }
 
 fn largest_i32(list: &[i32]) -> i32 {
@@ -121,4 +122,29 @@ fn test_method3() {
     let p3 = p1.mixup(p2);
 
     println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
+}
+
+fn test_() {
+    #[derive(Debug)]
+    enum Option<T> {
+        Some(T),
+        _None,
+    }
+
+    let integer = Option::Some(5);
+    let float = Option::Some(5.0);
+    println!("integer is {:#?}, float is {:#?}", integer, float);
+//    enum Option_i32 {
+//        Some(i32),
+//        None,
+//    }
+//
+//    enum Option_f64 {
+//        Some(f64),
+//        None,
+//    }
+
+//        let integer = Option_i32::Some(5);
+//        let float = Option_f64::Some(5.0);
+
 }
