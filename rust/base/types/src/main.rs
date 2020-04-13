@@ -32,6 +32,12 @@ fn main() {
 //    error
 //    show(arr);
     show(arr1);
+
+    // 元组
+    let tup: (i32, f32, char) = (-3, 3.69, '你');
+    println!("{}", tup.0);
+    println!("{}", tup.1);
+    println!("{}", tup.2);
 }
 
 fn show(arr:[u32; 3]) {
