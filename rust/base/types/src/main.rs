@@ -26,10 +26,12 @@ fn main() {
     // 数组
     //[Type: size]
     let arr: [u32; 5] = [1, 2, 3, 4, 5];
+    let arr1: [u32; 3] = [1, 2, 3];
     println!("arr[0] = {}", arr[0]);
 
 //    error
 //    show(arr);
+    show(arr1);
 }
 
 fn show(arr:[u32; 3]) {
