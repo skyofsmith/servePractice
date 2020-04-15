@@ -1,10 +1,7 @@
 use std::net::{TcpListener, TcpStream};
-use std::io::Read;
 
-fn handle_client(mut stream: TcpStream) {
-    let mut buffer = [0; 512];
-    stream.read(&mut buffer).unwrap();
-    println!("Request: {}", String::from_utf8_lossy(&buffer[..]));
+fn handle_client(_stream: TcpStream) {
+  println!("receive something");
 }
 
 fn main() -> std::io::Result<()> {
