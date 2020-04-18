@@ -35,21 +35,25 @@ fn main() {
         // 元组
     }
 
-    fn tasks_ownership(some_string: String) {
+    fn tasks_ownership(some_string: String) -> String{
         println!("{}", some_string);
+        some_string
     }
 
     fn makes_copy(i: i32) {
         println!("i = {}", i);
     }
+    {
 
-    let s = String::from("hello");
-    tasks_ownership(s);
-    // println!("s = {}", s);
-
-    let x = 5;
-    makes_copy(x);
-    println!("x = {}", x);
+        
+        let s = String::from("hello");
+        let s1 = tasks_ownership(s);
+        println!("s1 = {}", s1);
+        
+        let x = 5;
+        makes_copy(x);
+        println!("x = {}", x);
+    }
 
     println!("Hello, world!");
 }
