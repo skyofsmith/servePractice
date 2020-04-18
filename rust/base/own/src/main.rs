@@ -22,5 +22,18 @@ fn main() {
 
     }
 
+    {
+        // copy
+        let a = 1;
+        let b = a;
+        println!("a = {}, b = {}", a, b);
+        // 常用的具有copy trait有：
+        // 所以的整型
+        // 浮点型
+        // 布尔值
+        // 字符类型 char
+        // 元组
+    }
+
     println!("Hello, world!");
 }
