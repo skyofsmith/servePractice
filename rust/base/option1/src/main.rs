@@ -24,6 +24,12 @@ fn main() {
         Some(i) => println!("result = {}", i),
         None => println!("nothing"),
     }
+
+    if let Some(value) = plus_one(y) {
+        println!("value = {}", value);
+    } else {
+        println!("do nothing");
+    }
 }
 
 fn plus_one(x: Option<i32>) -> Option<i32> {
