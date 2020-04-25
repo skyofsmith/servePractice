@@ -6,7 +6,7 @@
 //3.1、 push_str
 //3.1、 push
 //3.1、 使用“+”合并字符串
-//3.1、 使用format
+//3.1、 使用format!
 //4、String索引
 //5、str索引
 //6、遍历
@@ -52,4 +52,27 @@ fn main() {
     let s343 = String::from("toe");
     let s344 = format!("{}-{}-{}", s341, s342, s343);
     println!("s344 = {}", s344);    // format!和println!类似
+
+    let s4 = String::from("hello");
+    // let s41 = s4[0];
+    println!("s4.len = {}", s4.len());
+    let s4 = String::from("你好");
+    println!("s4.len = {}", s4.len());
+    
+    let hello = "你好";
+    let h5 = &hello[0..3];
+    println!("h5 = {}", h5);
+    
+    // let h6 = &hello[0..2];
+    // println!("h6 = {}", h6);
+
+    // chars
+    for c in s4.chars() {
+        println!("c = {}", c);
+    }
+
+    // bytes
+    for b in s4.bytes() {
+        println!("b = {}", b);
+    }
 }
