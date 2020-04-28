@@ -4,9 +4,9 @@
 name = "crates"
 version = "0.1.0"
 dependencies = [
- "factory",
+ "mylib",
 ]
 
 [[package]]
-name = "factory"
+name = "mylib"
 version = "0.1.0"
