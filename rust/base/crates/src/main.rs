@@ -1,19 +1,15 @@
-mod factory {
-    pub mod produce_refrigerator {
-        pub fn produce_re() {
-            println!("produce re!");
-        }
-    }
+use factory::factory::produce_refrigerator;
+// use factory::factory::produce_refrigerator::produce_re; // 不推荐使用
+use factory::factory::produce_washing_machine as A;
 
-    mod produce_washing_machine {
-        fn produce_washing_machine() {
-            println!("produce washing machine!");
-        }
-    }
-}
+// use factory::factory::*; // 导入所有包
 
 fn main() {
-    factory::produce_refrigerator::produce_re();
-    // factory::produce_washing_machine::produce_washing_machine();
-    println!("Hello, world!");
+    // 绝对路径
+    factory::factory::produce_refrigerator::produce_re();
+
+    produce_refrigerator::produce_re();
+    A::produce_re();
+
+    // produce_re();  // 不推荐使用
 }
