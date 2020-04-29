@@ -38,6 +38,10 @@ mod mod_a {
 }
 
 use mod_a::A;
+extern crate crypto;
+
+use crypto::digest::Digest;
+use crypto::sha3::Sha3;
 
 fn main() {
     // 绝对路径
@@ -58,4 +62,10 @@ fn main() {
     // println!("name = {}", name);
 
     mod_a::mod_b::mod_c::print_c();
+
+    let mut hasher = Sha3::sha3_256();
+    hasher.input_str("hello world");
+
+    let result = hasher.result_str();
+    println!("result = {}", result);
 }
