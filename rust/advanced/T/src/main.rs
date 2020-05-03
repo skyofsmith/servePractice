@@ -14,8 +14,22 @@ fn largest_i32(list: &[i32]) -> i32 {
     largest
 }
 
+fn largest_char(list: &[char]) -> char {
+    let mut largest = list[0];
+    for &item in list.iter() {
+        if item > largest {
+            largest = item;
+        }
+    }
+    largest
+}
+
 fn main() {
     let number_list = vec![1, 2, 23, 34, 8, 100];
     let max_number = largest_i32(&number_list);
     println!("max_number = {}", max_number);
+
+    let char_list = vec!['a', 'y', 'b'];
+    let max_char = largest_char(&char_list);
+    println!("max_char = {}", max_char);
 }
