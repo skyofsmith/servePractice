@@ -37,16 +37,33 @@ fn largest<T: PartialOrd + Copy> (list: &[T]) -> T {
     larger
 }
 //--------------使用泛型-------------------------
-fn main() {
-    let number_list = vec![1, 2, 23, 34, 8, 100];
-    let max_number = largest_i32(&number_list);
-    println!("max_number = {}", max_number);
-    let max_num = largest(&number_list);
-    println!("max_num = {}", max_num);
+//--------------结构体中使用泛型-------------------------
+#[derive(Debug)]
+struct Point<T> {
+    x: T,
+    y: T,
+}
 
-    let char_list = vec!['a', 'y', 'b'];
-    let max_char = largest_char(&char_list);
-    println!("max_char = {}", max_char);
-    let max_c = largest(&char_list);
-    println!("max_c = {}", max_c);
+//--------------结构体中使用泛型-------------------------
+fn main() {
+    {
+        let number_list = vec![1, 2, 23, 34, 8, 100];
+        let max_number = largest_i32(&number_list);
+        println!("max_number = {}", max_number);
+        let max_num = largest(&number_list);
+        println!("max_num = {}", max_num);
+
+        let char_list = vec!['a', 'y', 'b'];
+        let max_char = largest_char(&char_list);
+        println!("max_char = {}", max_char);
+        let max_c = largest(&char_list);
+        println!("max_c = {}", max_c);
+    }
+    {
+        let integer = Point{x: 1, y: 2};
+        println!("integer {:#?}", integer);
+
+        let float = Point{x: 1.1, y: 2.2};
+        println!("float = {:#?}", float);
+    }
 }
