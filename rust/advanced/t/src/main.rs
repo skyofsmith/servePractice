@@ -44,7 +44,50 @@ struct Point<T> {
     y: T,
 }
 
+#[derive(Debug)]
+struct Point2<T, U> {
+    x: T,
+    y: U,
+}
+
 //--------------结构体中使用泛型-------------------------
+//--------------枚举中使用泛型-------------------------
+enum Option<T> {
+    Some(T),
+    None,
+}
+
+enum Result<T, E> {
+    Ok(T),
+    Err(E),
+}
+//--------------枚举中使用泛型-------------------------
+//--------------方法中使用泛型-------------------------
+struct Points<T> {
+    x: T,
+    y: T,
+}
+impl<T> Points<T> {
+    fn get_x(&self) -> &T {
+        &self.x
+    }
+    fn get_y(&self) -> &T {
+        &self.y
+    }
+}
+struct Pnt<T, U> {
+    x: T,
+    y: U,
+}
+impl<T, U> Pnt<T, U> {
+    fn create_point<V, W>(self, other: Pnt<V, W>) -> Pnt<T, W> {
+        Pnt {
+            x: self.x,
+            y: other.y,
+        }
+    }
+}
+//--------------方法中使用泛型-------------------------
 fn main() {
     {
         let number_list = vec![1, 2, 23, 34, 8, 100];
@@ -65,5 +108,22 @@ fn main() {
 
         let float = Point{x: 1.1, y: 2.2};
         println!("float = {:#?}", float);
+
+        let a = Point2{x: 1.1, y: 2.2};
+        println!("a = {:#?}", a);
+    }
+    {
+        let p = Points{x: 1, y: 2};
+        println!("x = {}", p.get_x());
+        println!("y = {}", p.get_y());
+
+        let p = Points{x: 1.1, y: 2.2};
+        println!("x = {}", p.get_x());
+        println!("y = {}", p.get_y());
+
+        let p1 = Pnt{x: 5, y: 1.1};
+        let p2 = Pnt{x: "hello", y: 'c'};
+        let p3 = p1.create_point(p2);
+        println!("p3.x = {}, p3.y = {}", p3.x, p3.y);
     }
 }
