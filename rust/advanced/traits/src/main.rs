@@ -47,10 +47,54 @@ impl SchoolName for Teacher {
 }
 //4、默认实现：可以在定义trait的时候提供默认的行为，trait的类型可以使用默认的行为。
 //5、trait作为参数
+//直接作为参数写法
 fn print_information(item: impl GetInformation) {
     println!("name = {}", item.get_name());
     println!("age = {}", item.get_age());
 }
+
+//trait_bound语法
+trait GetName {
+    fn get_name(&self) -> &String;
+}
+
+trait GetAge {
+    fn get_age(&self) -> u32;
+}
+
+//写法1:
+fn print_informations<T: GetName+GetAge>(item: T) {
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+
+//写法2:
+fn print_informations2<T>(item: T)
+    where T: GetName+GetAge
+{
+    println!("name = {}", item.get_name());
+    println!("age = {}", item.get_age());
+}
+
+impl GetName for Student {
+    fn get_name(&self) -> &String {
+        &self.name
+    }
+}
+impl GetAge for Student {
+    fn get_age(&self) -> u32 {
+        self.age
+    }
+}
+
+fn produce_item_with_age() -> impl GetAge {
+    #[derive(Debug)]
+    Student {
+        name: String::from("xiaoming"),
+        age: 16,
+    }
+}
+
 fn main() {
     let s = Student {
         name: "xiaoming".to_string(),
@@ -68,4 +112,17 @@ fn main() {
     println!("teacher school name = {}", tsn);
     print_information(s);
     print_information(t);
+
+    let stu = Student {
+        name: "XiaoZhang".to_string(), 
+        age: 10
+    };
+    let stu2 = Student {
+        name: "XiaoWang".to_string(), 
+        age: 30
+    };
+    print_informations(stu);
+    print_informations2(stu2);
+
+    let _s = produce_item_with_age();
 }
