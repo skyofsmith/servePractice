@@ -87,11 +87,44 @@ impl GetAge for Student {
     }
 }
 
+impl GetName for Teacher {
+    fn get_name(&self) -> &String {
+        &self.name
+    }
+}
+impl GetAge for Teacher {
+    fn get_age(&self) -> u32 {
+        self.age
+    }
+}
+// error
+/* 
 fn produce_item_with_age() -> impl GetAge {
-    #[derive(Debug)]
-    Student {
-        name: String::from("xiaoming"),
-        age: 16,
+    let is = true;
+    if is {
+        Student {
+            name: String::from("xiaoming"),
+            age: 16,
+        }
+    } else {
+        Teacher {
+            name: String::from("xiaohuang"),
+            age: 30
+        }
+    }
+
+} */
+struct PeopleMatchInformation<T, U> {
+    master: T,
+    student: U,
+}
+
+impl<T: GetName+GetAge, U:GetName+GetAge> PeopleMatchInformation<T, U> {
+    fn print_all_information(&self) {
+        println!("master name = {}", self.master.get_name());
+        println!("master age = {}", self.master.get_age());
+        println!("student name = {}", self.student.get_name());
+        println!("student age = {}", self.student.get_age());
     }
 }
 
@@ -124,5 +157,20 @@ fn main() {
     print_informations(stu);
     print_informations2(stu2);
 
-    let _s = produce_item_with_age();
+    // let _s = produce_item_with_age();
+
+    let p_s = Student {
+        name: String::from("xiaoming"),
+        age: 18
+    };
+    let p_t = Teacher {
+        name: String::from("xiaohuang"),
+        age: 30,
+        subject: String::from("math")
+    };
+    let p = PeopleMatchInformation {
+        master: p_t,
+        student: p_s
+    };
+    p.print_all_information();
 }
