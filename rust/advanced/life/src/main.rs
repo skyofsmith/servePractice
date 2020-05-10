@@ -21,22 +21,29 @@ fn get_str<'a>(x: &'a str, y: &str) -> &'a str {
 //     r.as_str()
 // }
 
+#[derive(Debug)]
+struct A<'a> {
+    name: &'a str,
+}
+
 fn main() {
-    // error
-    /*
-    let r;
     {
+        // error
+        /*
+        let r;
+        {
+            let x = 5;
+            r = &x;
+        }
+        println!("r = {}", r);
+        */
+        let r;
         let x = 5;
         r = &x;
+        println!("x = {}", x);
+        println!("r = {}", r);
+        println!("---------------");
     }
-    println!("r = {}", r);
-    */
-    let r;
-    let x = 5;
-    r = &x;
-    println!("x = {}", x);
-    println!("r = {}", r);
-    println!("---------------");
 
     {
         let s1 = String::from("abcde");
@@ -47,5 +54,14 @@ fn main() {
         println!("ss = {}", ss);
         // let ss2 = a_str(s1.as_str(), s2.as_str());
         // println!("ss2 = {}", ss2);
+        println!("---------------");
+    }
+
+    {
+        let n = String::from("hello");
+        let a = A {
+            name: &n
+        };
+        println!("a = {:#?}", a);
     }
 }
