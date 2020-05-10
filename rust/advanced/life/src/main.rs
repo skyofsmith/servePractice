@@ -43,6 +43,21 @@ fn get_a_str(s: &str) -> &str {
 //          fn foo(x: &i32) -> &i32   等价于   fn foo<'a>(x: &'a i32) -> &'a i32
 //     c、如果方法有多个输入生命周期参数， 不过其中之一因为方法的缘故为&self或者&mut self，那么self的生命周期被赋予所以输出生命周期参数。例子在下面来看
 //          fn function(&self, x: &str, y: &st, ...) -> &str {}
+//1、静态生命周期
+//定义方式： 'static'
+//其生命周期存活于整个程序期间，所有的字符字面值都拥有static生命周期。
+//let s: &'static str = "hello";
+
+use std::fmt::Display;
+
+fn function<'a, T: Display>(x: &'a str, y: &'a str, ann: T) -> &'a str {
+    println!("ann iss {}", ann);
+    if x.len() < y.len() {
+        x
+    } else {
+        y
+    }
+}
 fn main() {
     {
         // error
@@ -80,5 +95,44 @@ fn main() {
             name: &n
         };
         println!("a = {:#?}", a);
+        println!("---------------");
+    }
+
+    {
+        struct StuA<'a> {
+            name: &'a str,
+        }
+        impl<'b> StuA<'b> {
+            fn do_something(&self) -> i32 {
+                3
+            }
+            // fn do_something2(&'b self, s: &str) -> &'b str {
+            fn do_something2(&self, s: &str) -> &str {
+                self.name
+            }
+            fn do_something3<'c>(&self, s: &'c str) -> &'c str {
+                s
+            }
+        }
+        
+        let s = String::from("hello");
+        let a = StuA {
+            name: &s,
+        };
+
+        println!("{}", a.do_something());
+        let s2 = String::from("hello");
+        println!("{}", a.do_something2(&s2));
+        let s3 = String::from("world");
+        println!("{}", a.do_something3(&s3));
+        println!("---------------");
+    }
+
+    {
+        let s1 = String::from("i am s1");
+        let s2 = String::from("i am s2, hello!");
+        let ann = 129;
+        let r = function(s1.as_str(), s2.as_str(), ann);
+        println!("r = {}", r);
     }
 }
