@@ -1,3 +1,4 @@
 */**/target/release/
 */**/target/debug/
 */**/target/rls/
+*/**/target/doc/
