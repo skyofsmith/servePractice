@@ -2,12 +2,10 @@
 
 struct Dog {
     name: String,
-    // count: i32,
 }
 impl Drop for Dog {
     fn drop (&mut self) {
-        println!("Dog {} leave", self.name);
-        // self.count -= 1;
+        println!("{} leave", self.name);
     }
 }
 
@@ -22,4 +20,18 @@ fn main() {
         println!("0 --------------------------");
     }
     println!("1 --------------------------");
+
+    //rust提供了 std::mem::drop()
+    {
+        println!("code block start --------------------------");
+        let a = Dog {
+            name: String::from("wangcai"),
+        };
+        let b = Dog {
+            name: String::from("dahuang"),
+        };
+        // b.drop();    // error
+        drop(b);
+        println!("code block end --------------------------");
+    }
 }
