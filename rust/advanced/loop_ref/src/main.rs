@@ -30,22 +30,24 @@ fn main() {
     println!("1, a rc count = {}", Rc::strong_count(&a));
     println!("1, a tail = {:?}", a.tail());
 
-    let b = Rc::new(
-        Cons(
-            10,
-            RefCell::new(
-                Rc::clone(&a)
+    {
+        let b = Rc::new(
+            Cons(
+                10,
+                RefCell::new(
+                    Rc::clone(&a)
+                )
             )
-        )
-    );
-    println!("2, a rc count = {}", Rc::strong_count(&a));
-    println!("2, b rc count = {}", Rc::strong_count(&b));
-    println!("2, b tail = {:?}", b.tail());
+        );
+        println!("2, a rc count = {}", Rc::strong_count(&a));
+        println!("2, b rc count = {}", Rc::strong_count(&b));
+        println!("2, b tail = {:?}", b.tail());
 
-    if let Some(link) = a.tail() {
-        *link.borrow_mut() = Rc::clone(&b)
+        if let Some(link) = a.tail() {
+            *link.borrow_mut() = Rc::clone(&b)
+        }
+        println!("3, a rc count = {}", Rc::strong_count(&a));
+        println!("3, b rc count = {}", Rc::strong_count(&b));
+        // println!("3, a tail = {:?}", a.tail());  //  error: stack overflow
     }
-    println!("3, a rc count = {}", Rc::strong_count(&a));
-    println!("3, b rc count = {}", Rc::strong_count(&b));
-    // println!("3, a tail = {:?}", a.tail());  //  error: stack overflow
 }
