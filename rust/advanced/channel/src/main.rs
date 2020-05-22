@@ -1,15 +1,101 @@
 use std::thread;
 use std::sync::mpsc;
+use std::time::Duration;
 
 fn main() {
-    let (tx, rx) = mpsc::channel();
-    thread::spawn(move || {
-        let val = String::from("hi");
-        tx.send(val).unwrap();
-    });
+    {
+        let (tx, rx) = mpsc::channel();
+        thread::spawn(move || {
+            let val = String::from("hi");
+            tx.send(val).unwrap();
+        });
 
-    let received = rx.recv().unwrap();
-    println!("Got: {}", received);
+        let received = rx.recv().unwrap();
+        println!("Got: {}", received);
+        println!("------------------");
+    }
+
+    {
+        let (tx, rx) = mpsc::channel();
+        thread::spawn(move || {
+            let val = String::from("hi");
+            tx.send(val).unwrap();
+            // println!("val = {}", val);  //调用send的时候，会发生move动作，所以此处不能再使用val
+        });
+
+        let received = rx.recv().unwrap();
+        println!("Got: {}", received);
+        println!("------------------");
+    }
+    {
+        let (tx, rx) = mpsc::channel();
+
+        thread::spawn(move || {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("thread"),
+            ];
+            for val in vals {
+                tx.send(val).unwrap();
+                thread::sleep(Duration::from_secs(1));
+            }
+        });
+
+        for recv in rx {
+            println!("Got: {}", recv);
+        }
+        println!("------------------");
+    }
+    {
+        let (tx, rx) = mpsc::channel();
+        let tx1 = mpsc::Sender::clone(&tx);
+        let tx2 = mpsc::Sender::clone(&tx);
+
+        thread::spawn(move || {
+            let vals = vec![
+                String::from("hi"),
+                String::from("from"),
+                String::from("the"),
+                String::from("thread"),
+            ];
+            for v in vals {
+                tx.send(v).unwrap();
+                thread::sleep(Duration::from_secs(1));
+            }
+        });
+
+        thread::spawn(move || {
+            let vals = vec![
+                String::from("A"),
+                String::from("B"),
+                String::from("C"),
+                String::from("D"),
+            ];
+            for v in vals {
+                tx1.send(v).unwrap();
+                thread::sleep(Duration::from_secs(1));
+            }
+        });
+
+        thread::spawn(move || {
+            let vals = vec![
+                String::from("a"),
+                String::from("b"),
+                String::from("c"),
+                String::from("d"),
+            ];
+            for v in vals {
+                tx2.send(v).unwrap();
+                thread::sleep(Duration::from_secs(1));
+            }
+        });
+
+        for rec in rx {
+            println!("Got: {}", rec);
+        }
+    }
 }
 
 //知识点：
