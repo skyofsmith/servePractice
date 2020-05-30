@@ -6,6 +6,54 @@
 //（4）不能实现任何自动清理的功能
 fn main() {
     {
+        let mut num = 5;
+        //创建不可变和可变的裸指针可以在安全的代码中，只是不能在不安全代码块之外解引用裸指针
+        let r1 = &num as *const i32;
+        let r2 = &mut num as *mut i32;
 
+        // println!("r1 is: {}", *r1);  // error
+        // println!("r2 is: {}", *r2);  // error
+
+        unsafe {
+            println!("r1 is: {}", *r1);
+            println!("r2 is: {}", *r2);
+        }
+
+        let add = 0x12345usize;
+        let _r = add as *const i32;
+    }
+
+    {
+        //5、调用不安全的函数或者方法
+        unsafe fn dangerous () {
+            println!("do something dangerous");
+        }
+
+        fn foo () {
+            let mut num = 5;
+            let r1 = &num as *const i32;
+            let r2 = &mut num as *mut i32;
+
+            unsafe {
+                println!("r1 is: {}", *r1);
+                println!("r2 is: {}", *r2);
+            }
+        }
+
+        // dangerous(); // error
+        unsafe {
+            dangerous();
+        }
+        foo();
+    }
+
+    {
+        //调用c语言的函数
+        extern "C" {
+            fn abs(input: i32) -> i32;
+        }
+        unsafe {
+            println!("abs(-3): {}", abs(-3));
+        }
     }
 }
