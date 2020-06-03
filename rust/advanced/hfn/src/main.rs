@@ -39,5 +39,6 @@ fn main() {
         }
         let c = return_clo();
         println!("1 + 1 = {}", c(1));
+        println!("1 + 1 = {}", (*c)(1));
     }
 }
