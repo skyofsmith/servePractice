@@ -1,5 +1,9 @@
 use mac;
+use hello_macro::HelloMacro;
+use hello_macro_derive::HelloMacro;
 
+#[derive(HelloMacro)]
+struct Main;
 fn main() {
     {
         let v = mac::my_vec![1, 2, 3];
@@ -11,5 +15,8 @@ fn main() {
         //temp_vec.push(3);
         //temp_vec
 
+    }
+    {
+        Main::hello_macro();
     }
 }
