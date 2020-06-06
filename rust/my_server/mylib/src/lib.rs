@@ -5,67 +5,54 @@ use std::sync::Mutex;
 
 struct Worker {
     id: usize,
-    thread: thread::JoinHandle<()>,
+    thread: Option<thread::JoinHandle<()>>,
 }
 
 impl Worker {
-    // fn new(id: usize) -> Worker {
-    //     let thread = thread::spawn(move || {
-
-    //     });
-    //     Worker {
-    //         id,
-    //         thread,
-    //     }
-    // }
-    // fn new(id: usize, receiver: mpsc::Receiver<Job>) -> Worker {
-    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Job>>>) -> Worker {
-        let thread = thread::spawn(move || {
-            loop {
-                let job = receiver.lock().unwrap().recv().unwrap();
-                println!("Worker {} got a job!", id);
-                job();
+    fn new(id: usize, receiver: Arc<Mutex<mpsc::Receiver<Message>>>) -> Worker {
+        let thread = thread::spawn(move || loop {
+            let message = receiver.lock().unwrap().recv().unwrap();
+            match message {
+                Message::NewJob(job) => {
+                    println!("Worker {} got a job!", id);
+                    job();
+                },
+                Message::Terminate => {
+                    println!("Worker {} receive terminate", id);
+                    break;
+                },
             }
         });
         Worker {
             id,
-            thread,
+            thread: Some(thread),
         }
     }
 }
 
 pub struct ThreadPool {
-    // threads: Vec<thread::JoinHandle<()>>,
     workers: Vec<Worker>,
-    sender: mpsc::Sender<Job>,
+    sender: mpsc::Sender<Message>,
 }
 
-// struct Job;
 type Job = Box<dyn FnOnce() + Send + 'static>;
+enum Message {
+    NewJob(Job),
+    Terminate,
+}
 
 impl ThreadPool {
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
-        // let mut threads = Vec::with_capacity(size);
         let mut workers = Vec::with_capacity(size);
         let (sender, receiver) = mpsc::channel();
         let receiver = Arc::new(Mutex::new(receiver)); // 线程安全
 
-
-        // for _ in 0..size {
-        //     let handle = thread::spawn(move || {
-
-        //     });
-        //     threads.push(handle);
-        // }
-
         for id in 0..size {
-            // workers.push(Worker::new(id));
             workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
 
         ThreadPool {
-            // threads
             workers,
             sender
         }
@@ -74,6 +61,23 @@ impl ThreadPool {
     pub fn execute<F>(&self, f: F)
         where F: FnOnce() + Send + 'static {
         let job = Box::new(f);
-        self.sender.send(job).unwrap();
+        self.sender.send(Message::NewJob(job)).unwrap();
+    }
+}
+
+impl Drop for ThreadPool {
+    fn drop (&mut self) {
+        //send terminate message to all workers
+        for _ in &mut self.workers {
+            self.sender.send(Message::Terminate).unwrap();
+        }
+
+        //wait all worker terminate
+        for worker in &mut self.workers {
+            // wait for worker thread terminate
+            if let Some(thread) = worker.thread.take() {
+                thread.join().unwrap();
+            }
+        }
     }
 }
