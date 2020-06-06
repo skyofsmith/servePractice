@@ -3,3 +3,10 @@
 [[package]]
 name = "my_server"
 version = "0.1.0"
+dependencies = [
+ "mylib",
+]
+
+[[package]]
+name = "mylib"
+version = "0.1.0"
