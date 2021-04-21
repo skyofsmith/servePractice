@@ -9,7 +9,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "sockjs": "^0.3.19",
+    "sockjs": "^0.3.20",
     "sockjs-client": "^1.3.0"
   }
 }
